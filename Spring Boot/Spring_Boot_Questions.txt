@@ -1,0 +1,38 @@
+	1. Difference b/w concerns and cross-cutting in Spring AOP.
+	2. why is char[] preferred over string for passwords.
+	3. Spring boot CLI
+	4. @SpringBootApplication annotation working
+	5. Create and use of annotation
+	6. Bean scope
+	7. Interceptor in Spring boot
+	8. @RestController vs @Controller
+	9. Hibernate vs JPA
+	10. Hibernate Mapping (121. 12M. etc.)
+	11. Plugins, Repositories and other POM file component
+	12. @ConfigurationProperties
+	13. Spring AOP
+	14. Exceptional Handling in Spring Boot
+	15. Spring Boot admin server
+	16. Spring Boot vs Spring MVC
+	17. Caching in Spring boot
+	18. Actuator
+	19. Internal working of Spring boot
+	20. Dispatcher servlet
+	21. Thymeleaf
+	22. IOC Container & Dependency Injection
+	23. Profiles in Spring Boot
+	24. ApplicationContext
+	25. Bean wiring
+	26. Application.yaml vs application.properties
+	27. Spring REST
+	
+	
+	
+	
+
+
+
+1. https://www.upgrad.com/blog/spring-boot-interview-questions-and-answers-beginners-experienced/
+2. https://www.simplilearn.com/spring-boot-interview-questions-article
+3. https://www.geeksforgeeks.org/spring-boot-interview-questions/
+
