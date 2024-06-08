@@ -1,8 +1,4 @@
 	1. Java String pool & Integer cache
-	
-
-
-
 	2. Is it possible to make a class "Static"
 
 	3. 
