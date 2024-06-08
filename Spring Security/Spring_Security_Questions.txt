@@ -1,0 +1,25 @@
+	1. Digest Authentication
+	It applies a hash function to username, password, HTTP method, and URI in order to send credentials in encrypted form. It generates more complex cryptographic results by using the hashing technique which is not easy to decode. 
+	
+	2. Session Management in Spring Security
+	3. SecurityContext & SecurityContextHolder
+	4. Oauth2 vs SAML
+	5. Hashing in Spring security
+	6. Salting
+	7. AbstractSecurityInterceptor
+	8. SpEL (Spring Expression Language)
+	9. Annotations using SpEL
+	10. AuthenticationManager
+	11. ProviderManager
+	12. JWT (Json Web Tokens)
+	13. Spring Security Filter chain and its working
+	14. Principal
+	15. DelegatingFilterProxy & FilterChainProxy
+	16. Intercept-url
+	17. ROLE_USER & ROLE_ANONYMOUS
+	18. @PreAuthorize, @Secured & @RolesAllowed
+	
+
+
+
+https://www.interviewbit.com/spring-security-interview-questions/
