@@ -39,3 +39,14 @@ Empty interface (no fields or methods). Ex: Serializable, Cloneable and Remote i
 	4. Set, HashSet, LinkedHashSet and its internal working
 	5. Map, TreeMap, HashMap, LinkedHashMap and its internal working
 	
+
+
+https://medium.com/@vivekkadiyanits/java-lead-7-to-10-years-interview-mastery-covered-question-has-asked-in-more-than-9-service-base-d55ffbb0009c
+
+https://medium.com/@sbmaggarwal/java-16-and-17-interview-questions-7a232656db20
+
+https://www.codekatha.com/2023/04/Java-interview-questions-for-10-years-experience.html#point19
+
+(200+ Questions)
+https://www.geeksforgeeks.org/java-interview-questions/
+https://www.geeksforgeeks.org/java-interview-questions/
