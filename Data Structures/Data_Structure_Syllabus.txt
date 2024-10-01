@@ -1,0 +1,73 @@
+1. Big(O)
+2. Arrays
+	--> 1-D Array
+	--> 2-D Array
+3. ArrayList
+4. LinkedList
+	--> Singly LinkedList
+	--> Doubly LinkedList
+	--> Circular LinkedList
+5. Stack
+6. Queue, Dequeue, Enqueue
+7. Heap
+7. Tree
+	--> Binary Tree
+		--> Preorder Traversal
+		--> Postorder Traversal
+		--> Inorder Traversal
+	--> Binary Search Tree
+		--> Preorder Traversal
+		--> Postorder Traversal
+		--> Inorder Traversal
+	--> AVL Tree
+	--> Binary Heap
+	--> Trie
+	--> Minimum Spanning Tree
+		--> Kruskal Algorithm
+		--> Prim's Algorithm
+8. Hashing
+	--> Hash Functions
+9. Graph
+	--> Breadth First Search
+	--> Depth First Search
+	--> Adjacency List
+	--> Adjacency Matrix
+	--> Shortest Path Problem
+10. Topological Sort
+	--> Adjacency List
+	--> Adjacency Matrix
+
+
+
+
+
+--------------------------------------------------
+Algorithms
+--------------------------------------------------
+1. Recursion Algorithms
+2. Sorting Algorithms
+	--> Bubble Sort
+	--> Selection Sort
+	--> Insertion Sort
+	--> Bucket Sort
+	--> Merge Sort
+	--> Quick Sort
+	--> Heap Sort
+3. Searching Algorithms	
+	--> Linear Search
+	--> Binary Search
+4. Graph Algorithms
+	--> Dijkstra's Algorithm
+	--> Bellman Ford Algorithm
+	--> Floyd Warshall Algorithm
+	--> All pair Shortest path problem
+5. Greedy Algorithm
+6. Divide & Conquer Algorithm
+7. Dynamic Programming
+8. Backtracking
+	--> N-Queens Problem
+
+
+
+Reference: https://www.udemy.com/course/java-data-structures-and-algorithms-masterclass/?couponCode=SKILLS4SALEB
+

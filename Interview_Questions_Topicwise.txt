@@ -1,0 +1,184 @@
+------------------------------------------------------------------
+JAVA QUESTIONS
+------------------------------------------------------------------
+1. SOLID Principles
+2. Design Patterns in Java.
+3. Runtime or Dynamic Polymorphism
+4. Abstraction
+5. Custom immutable class
+6. Custom singleton class
+6.1. Can we break singleton design pattern?
+7. HashMap Implementation and design change in HashMap in Java8
+8. Hash Collision and how HashMap handles it
+9. HashMap vs LinkedHashMap
+10. Difference b/w equals() and hashCode() methods.
+11. map() vs flatMap() in Java Streams.
+12. Why Java Stream are lazy loading.
+13. Intermediate and terminal operations in Stream API.
+14. Functional Interface and its types.
+14.1 Bipredicate Function and its examples.
+14.2 Use of static and default methods in Functional interface
+15. Checked and Unchecked exceptions
+16. Garbage collection and its algorithms
+16.1. How to do garbage collection in Java?
+17. How to do serialization in Java and its interface?
+17.1 How to block serialization in child class if parent class implements Serialization?
+18. Generics in Java. What wildcards are used in it?
+
+
+
+------------------------------------------------------------------
+MULTITHREADING QUESTIONS
+------------------------------------------------------------------
+1. Executor Interface
+1.1 ThreadPool in Java and its types
+2. Completable Future
+3. Fail Safe and Fail Fast iterators
+4. Concurrent Execution
+5. Volatile Keyword
+6. Thread Safety
+7. How to execute multiple threads sequentially?
+
+
+
+
+
+------------------------------------------------------------------
+SPRING BOOT QUESTIONS
+------------------------------------------------------------------
+1. How to exclude a particular package or class dependency.
+--> @ComponentScan(excludeFilters = @ComponentScan.Filter(value = {KafkaProducer.class})) // Similar for includeFilters
+--> @ComponentScan(excludeFilters = @ComponentScan.Filter(value = {KafkaProducer.class}), basePackages = "com.*")  // won't have include
+2. Spring profiles
+--> 	spring.profiles.active = dev
+	application-dev.properties
+--> To create profiles in same file
+	#---
+	spring.config.activate.on-profile=dev
+	<List the dev properies>
+	#---
+	spring.config.activate.on-profile=test
+	<List the test properies>
+3. How to return two different format of response like XML format for JSON format from same REST API?
+-->	@RequestMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	Also add Accept header while hitting API as {"Accept": "application/json"}
+4. Exception Handling in Spring Boot
+--> For Global exception handling, use @ControllerAdvice and @ExceptionHandler
+	@ControllerAdvice
+	public class GlobalExceptionHandler {
+
+		@ExceptionHandler(value = NoSuchCustomerExistsException.class)
+		@ResponseStatus(HttpStatus.NOT_FOUND)
+		public @ResponseBody ErrorResponse handleException(NoSuchCustomerExistsException ex) {
+			return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+		}
+	}
+4.1. How to create custom exception class?
+5. Lazy and Eager loading
+6. @Primary, @Qualifier and @Required annotations
+	--> @Qualifier --> Used for selecting bean in case of ambiguity
+	--> @Primary --> Used for defining primary bean if multiple beans are defined of same type. By default primary bean gets injection. if @Qualifier is also present, it will be taken into consideration.
+	--> @Required --> Used with Setter methods to inject dependency
+7. Spring Boot internal working
+	--> It uses spring.factories files present in META-INF folder
+8. Caching in Spring boot. Num cache and Redis cache.
+9. LRU and LFR in cache.
+	--> LRU : Least Recently Used
+	--> LFU : Least Frequently Used
+10. Logging in spring boot.
+11. How to create Git CI/CD pipeline?
+12. Any recent POC done in SpringBoot?
+	--> Have implemented multitenancy in SpringBoot using Hibernate AbstractMultitenancyConnectionProvider class which implements MultitenantConnectionProvider interface.
+13. How to implement Primary key and Composite key in JPA
+14. Generation strategy in primary key.
+15. Which Repository interface you have used?
+	--> Both JPARepository<EntityName, PrimaryKeyDatatype> & CrudRepository<EntityName, PrimaryKeyDatatype>
+16. Entity relationship in JPA
+17. How JPA assures ACID principle?
+	--> Atomicity
+	--> Consistency
+	--> Isolation
+	--> Durability
+18. How to handle transaction in SpringBoot?
+--> @Transactional annotation is used
+19. How to handle latency issue for some API in SpringBoot?
+20. HTTP error codes.
+--> 200 : OK
+--> 201 : Created
+--> 202 : Accepted
+--> 204 : No Content
+--> 301 : Moved Permanently
+--> 302 : Found
+--> 400 : Bad Request
+--> 401 : Unauthorized
+--> 402 : Payment Required
+--> 403 : Forbidden
+--> 404 : Not Found
+--> 405 : Method Not Allowed
+--> 408 : Request Timeout
+--> 409 : Conflict
+--> 500 : Internal Server Error
+--> 501 : Not Implemented
+--> 502 : Bad Gateway
+--> 503 : Service Unavailable
+--> 504 : Gateway Timeout
+
+21. What API headers you have used??
+--> "Content-Type", "Accept", "Authorization"
+22. 
+
+
+
+------------------------------------------------------------------
+SPRING SECURITY QUESTIONS
+------------------------------------------------------------------
+
+
+
+
+
+------------------------------------------------------------------
+MICROSERVICES
+------------------------------------------------------------------
+
+
+
+
+
+------------------------------------------------------------------
+DATA STRUCTURES
+------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------
+STREAM API QUESTIONS
+------------------------------------------------------------------
+1. Fetch duplicates in List of Integers using Java Stream API.
+2. There is a list of Integer array. Find duplicates in it using Stream API
+--> Set<Integer> set = new HashSet<>(); 
+--> List<Integer> duplicates = list.stream().filter(l -> !set.add(l)).collect(Collectors.toList());
+3. There is a String. We have to arrange it using its anagram. Do it either using Stream API or data structure. Choose Stream API at first.
+
+
+
+
+------------------------------------------------------------------
+CODING QUESTIONS
+------------------------------------------------------------------
+
+
+
+
+
+
+------------------------------------------------------------------
+SQL QUESTIONS
+------------------------------------------------------------------
+
+
+
+

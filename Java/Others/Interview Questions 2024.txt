@@ -1,0 +1,600 @@
+Coforge L1 - 
+
+1] Program to finf duplicate elements in list using java8 :
+public class Test {
+    public static void main(String[] args) {
+        Integer[] arr = {1, 9, 9 ,2, 8, 5, 5};
+        Set<Integer> set=new HashSet<>();
+       List<Integer>dupElement = Arrays.stream(arr).filter(ele->!set.add(ele)).collect(Collectors.toList());
+        System.out.println(dupElement);
+    }
+}
+______________________________________________________________________________________________________________________________________________
+
+2] Program to find 2nd largest element in list using Java8
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer>list=List.of(10,20,30,40,50);
+       Integer secondval= list.stream().sorted(Comparator.comparing(Integer::intValue).reversed()).skip(1).findFirst().get();
+        System.out.println(secondval);
+    }
+}
+_______________________________________________________________________________________________________________________________________________
+3] Resverse the words in string  in place : 
+
+input ="java util map"
+Output="avaj litu pam"
+
+public class Test {
+    public static void main(String[] args) {
+        String  input ="java util map";
+     String str =   Arrays.asList(input.split(" ")).stream().map(strr->new StringBuffer(strr).reverse()).collect(Collectors.joining(" "));
+        System.out.println(str);
+
+    }
+}
+_________________________________________________________________________________________________________________________________________________ 
+4] Find the pair of the ele whose sum is 10 using java 8
+
+int[] arr = { 1, 9, 2, 8, 3, 7, 4, 6, 5, 5 };
+
+Set<Integer> set = new HashSet<>(Arrays.asList(arr));
+        
+        set.stream()
+            .filter(num -> set.contains(targetSum - num) && num <= targetSum - num)
+            .forEach(num -> System.out.println("(" + num + ", " + (targetSum - num) + ")"));
+ 
+______________________________________________________________________________________________________________________________________________
+
+5] Find the second highest salary of employee: 
+
+select emp.sal from Employee emp orderBy emp.sal DESC Limit 1 , offset 1 
+
+_____________________________________________________________________________________________________________________________________________________
+
+Synecron L1:
+
+1] Find the string whoes lenth is > 5 and convert it into UpperCase.
+public class Test {
+    public static void main(String[] args) {
+        List<String>ls=List.of("sonali","amit","pranit","priya");
+        List<String>newStr= ls.stream().filter(str->str.length()>5).map(s->s.toUpperCase()).collect(Collectors.toList());
+        System.out.println(newStr);
+  
+    }
+}
+
+2]  which java version is currently released ?
+3]  java 8 features ?
+4]  why default method added in java 8 ?
+5]  when ConcurrentModification Excption will occure and how to prevent that?
+6]  if we have AddresService interface and AddressController how we can use AddressService inside Controller ?
+7]  we have 2 implementation of AddresService 1. currentAddress 2 . PermanantAddress both of type AddressService how to deside which one to inject ?
+8]  How to handle Exceptions in Rest API ?
+9]  How to add an employee object in DB and what code will you use as status code
+10] what is 503 code
+11] which API gateway used in project and why do we use that ?
+12] have you involved in prod deployment and what is the porcess ?
+13] how MS are communicating with each other ?
+14] what tool you used for API documentation?
+15] how to handle security in project ?
+16] what is GIT Stash ?
+17] what is Docker and why do we used taht ?
+_____________________________________________________________________________________________________________________________________________________
+
+Zensar :
+
+
+1] Occurence of each char and print whose char count > 3
+
+String str ="sonaliiiiso";
+
+Map<Character,Long>charMap=str.chrs().mapToObj(ch->(char)ch).collect(Collectors.grouppingBy(Function.identity,Collectors.counting()))
+.stream().entrySet().filter(entry->entry.getValue()>3).forach(en->System.out.Println(en.getKey(),en.getValue()));
+_________________________________________________________________________________________________________________________________________________
+
+Find employee by city : 
+
+@RestController()
+@RequestMapping("/emp")
+class EmaployeeController{
+
+@Autowired
+EmployeeService empService;
+
+
+@GetMapping("/get/{city})
+
+public List<Employee> fetchEmpByCity(@PathVariable(city) String city){
+
+ return empService.fetchEmp(city);
+
+  }
+
+}
+
+@Service
+class EmployeeService{
+
+@Autowired
+EmployeeRepo empRepo
+
+List<emp> list = empRepo.findByEmpCity;
+
+}
+
+@Repository
+Interface EmployeeRepo extends JPARepository(Employee.class,Long){
+List<employee>findByEmpCity(String city);
+
+}
+
+
+Query to find maximum employee in department 
+
+select dept.deptName , emp.EmpName , count(dept.deptName)from Employee emp 
+LeftJoin Department dept on dept.id=emp.deptId
+goupBy(dept.deptName) 
+
+
+
+___________________________________________________________________________________________________________________________________________
+
+MasterCard - 
+
+1] merge given 2 arrays and print in sorted order
+    int[] arr1 = {4,5,13,22};
+    int[] arr2 = {0,9,3,7,12,11};
+	
+	int[] arr3= IntstreamStream.concat(Arrays.stream(arr1),Arrays.stream(arr2).sorted).toArray();
+	
+2] Input: nums = [3,2,3]
+   Output: 3
+
+   Input: nums = [2,2,1,1,1,2,2]
+   Output: 2	
+   
+   
+3] fetech employee from database whose id equals to 101,102,103
+   select * from Employee emp where emp.ids IN(101,102,103);
+   
+4]  what will be the output :
+
+   try {
+
+   } catch(exception e) {
+
+   }  catch(NumberFormatException e) {
+
+   } finally {
+	sysout
+   }   
+   
+5] write API to fetch Customers from DB onthe basis of List of CustomerIDs
+
+@RestController()
+@RequestMapping("/cust)
+class CustomerDemo{
+
+@Autowired
+CustomerService custService
+
+@PostMapping()
+public List<Customer> fetchCustomersByIds(@RequestBody List<String>custIds){
+
+ List<Customers>list =custService.findCustmers(custIds);
+   
+   return list;
+  
+}
+
+}
+
+@Service
+class CustomerService {
+
+@Autowired
+CustomerRepo custRepo;
+
+    public List<Customers>findCustmers(List<String>custIds){
+	
+	List<Customers>list=custRepo.findAllCustByIds(custIds);
+	return list;
+	}
+
+}
+
+@Repository
+Interface CustomerRepo extends JpaRepository<Customer.class,String>{
+
+ @Query("select cust.name,cust.address from Customer cust where cust.ids in(custIds)")
+ List<Customers>findAllCustByIds(@Param List<String>custIds);
+
+}
+_________________________________________________________________________________________________________________________ 
+Solystics :
+
+1] you have list of emp objects And in employee class you have Id, name , department n date of joining
+   so Can u fetch most experience employee from list
+
+    Employee emp = empList().stream().sorted(Comparator.comparing(Employee::getDate()).findFirst()).get();
+	
+2] Create a custom exception class
+
+public class MyCustomException extends RuntimeException {
+ public String msg;
+ 
+ MyCustomException(String msg){
+ super(msg);
+ 
+ }
+
+}
+// to use this custom exception in class  - throw new MyCustomException(" exception occurred....");	
+
+
+3] you have interface called cricket n 2 implementation classes ipl n odi 
+ configure them in spring boot in such a way that whenever I want ipl instance I will get  n same for odi
+ 
+Interface Cricket{
+ 
+ } 
+@Component(name = ipl)
+class Ipl implements Cricket{
+ 
+ }
+@Component(name = odi)
+ class Odi implements Cricket{
+
+ }
+ 
+ @RestController()
+ Class MatchController {
+ 
+ @Autowired()
+ @Qualifier(name= "ipl")
+ Ipl ipl ;
+ }
+ 
+ 
+4] Create 2 threads frst will print even n second will print odd no but both threads will run simultaneously
+
+class MyThread implements Runnable {
+
+
+public void run(){
+
+for(int i=0;i<10;i++){
+if(i%2==0){
+system.out.println("even no: "+ i);
+
+   }
+
+     }
+   }
+}
+
+class  Test {
+
+main(){
+
+MyThread thread1 = new MyThread();
+Thread thread2  = new Thread(thread1);
+
+thread2.strart();
+for(int i=0;i<10;i++){
+if(i%2!==0){
+system.out.println("odd no: "+ i)
+
+   }
+
+     }
+}
+}
+
+_________________________________________________________________________________________________________________________
+
+Zensar L2  :
+____________________________________________________________________________________________________________________________
+
+1] Create Thread-Safe lazy loading singlton class : 
+
+class ThreadSafeDemo{
+
+private static final ThreadSafeDemo obj ;
+
+ private ThreadSafeDemo (){
+ 
+   }
+   
+public Static ThreadSafeDemo getInstance(){
+
+   synchronized (ThreadSafeDemo.class){
+      if(obj==null){
+ 
+        obj= new ThreadSafeDemo();
+
+         }
+	  }
+   return obj;
+   }
+}
+__________________________________________________________________________________________________________________________________________
+2] sort the employee by there department : 
+
+   Map<String,List<Employee>>map=empList().stream().collect(Collectors.grouppingBy(Employee::getDepartment()))
+________________________________________________________________________________________________________________________________________________
+
+3] sort the employee by there department using SQL query : 
+
+    select dept.departmentName , count(emp.id) from employee emp 
+    left join Department dept on dept.deptId=emp.deptId
+    GroupBy dept.departmentName 
+   
+_____________________________________________________________________________________________________________________________________   
+
+Pratiti Technology :
+
+_________________________________________________________________________________________________________________________
+
+Capgimini :
+
+1] Given a list of Strings, write a java program to convert each string to uppercase
+   and filter out the strings with length less than 5 using stream api
+ 
+     List<String> list= List.of("sonali","riya","omm","ashwini");
+     List<String> list2= list.stream().map(str->str.toUppercase()).filter(st->st.length()<5).collect(Collectors.toList());
+ 
+
+2] write a java program to find the longest string in a list using Stream API
+ 
+      List<String> list= List.of("sonali","riya","omm","ashwini");
+       String st=  list.stream().sorted(Comparator.comparing(String::length).reversed()).findFirst().get();
+        System.out.println(st);
+
+3] find the duplicate chars in string 
+
+   String str = "sonali uttam thorat";
+   Set<Character>set= new HashSet<>;
+
+   String newStr = str.chars().mapToObj(ch->(char)ch).filter(ch->!set.add(ch)).collect(Collectors.joining(" "));
+__________________________________________________________________________________________________________________________________________
+HCL L1 :
+
+find the common character which present in both the strings :
+
+      String str1 ="mkolkatta";
+      String str2 ="mumbaikt";
+
+      char[]arr1= str1.toCharArray();
+      char[]arr2= str2.toCharArray();
+      Set<Character>set = new HashSet<>();
+      for(int i=0;i<arr1.length-1;i++){
+          for(int j=0;j<=arr2.length-1;j++){
+              if(arr1[i]==arr2[j]){
+                 set.add(arr1[i]);
+
+              }
+          }
+      }
+        System.out.println(set);   
+		
+		
+find the common character which present in both the strings  Using Java 8 :
+
+ String str1 ="mkolkatta";
+        String str2 ="mumbaikt";
+
+        Stream.concat(Stream.of(str1),Stream.of(str2))
+                .flatMap(str->str.chars().mapToObj(c->(char)c))
+                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+                .entrySet().stream().filter(entry->entry.getValue()>1).forEach(k->System.out.println(k.getKey()));
+	
+______________________________________________________________________________________________________________________________________________________-		
+Collabra L1 :
+
+1] what will be the output - 
+
+Class Base{
+
+  Base(string s){
+
+system.out.println("parameterised constructor is called");   }
+
+}
+
+
+public class Derived extends Base{
+
+   Derived(){
+system.out.println("default constrcutor is called");
+ }
+
+ public static void main(String args[]){
+
+   Base obj= new Derived();
+}
+
+}	
+	
+2] diff between @PathVariable and @RequestParam also form the API 
+      http://localhost:8080/employee?id=20
+
+      http://localhost:8080/employee/id/20
+	  
+3] merge 2 array and sort it :
+
+        int arr1[]={1,3,5};
+        int arr2[]={2,4,6};
+
+       int[] arr3= IntStream.concat(Arrays.stream(arr1),Arrays.stream(arr2)).sorted().toArray();
+        System.out.println(Arrays.toString(arr3));	 
+
+4]  Place all 0 to left 
+        Integer[]arr={1,0,1,0,1,0};
+
+       Object[] ar1= Arrays.stream(arr).sorted().toArray();
+        System.out.println(Arrays.toString(ar1));
+		
+    Place all 0 to right :
+        Object[] ar2= Arrays.stream(arr).sorted(Comparator.comparing(Integer::intValue).reversed()).toArray();
+        System.out.println(Arrays.toString(ar2));		
+___________________________________________________________________________________________________________________________________________
+
+Globant L1 :
+1] what will be the output :
+
+		try {
+//someCode
+}finally {
+//someCode
+}
+
+2] what will be the output :
+
+try {
+}
+catch (NullPointerException ex) {
+} catch (Exception ex) {
+}
+
+
+3] how it will store into map :
+
+Map<String, String>
+{"A", "A1"}
+{"B", "B1"}
+{"A", "C1"}
+{null, "D1"}
+{"C", "C2"}
+{null, "D2”}
+
+
+4] check 2 arrays are equal or not  :
+
+      boolean equal = false;
+      int[]arr1 = {10,20,30,40,100};
+      int[]arr2 = {10,20,30,40,90};
+      if(arr1.length==arr2.length) {
+          equal = IntStream.range(0, arr1.length).allMatch(i -> arr1[i] == arr2[i]);
+     }
+        System.out.println(equal);
+
+    }
+
+_________________________________________________________________________________________________________________________________________________________
+KGISL L1 :
+
+1] In student list count the grade which stuent having 
+   
+   List<Students> stdList;
+    Map<String,Long>>map = stdList.stream().collect(Collectors.grouppingBy(Student::getGrade,Collectors.Counting));
+	
+2] Check string is Palindrom or not 
+   
+    String s1 ="aba";
+    StringBuffer sb = new StringBuffer(s1);
+    String s2 = sb.reverse();
+    if(s1.equals(s2){
+    sout("Palindrom");
+    }else{
+    sout("Not Palindrom");
+    }   
+
+3] how to load bunch of properties from application.yml to java class -  with @ConfigurationProperties
+4] JDK11 , JDK17 features
+5] @Qualifier when will use it 
+6] API Gateway roles 
+7] DP in microservices
+8] how to handle failures in MS 
+9] when token expires how to give permission to logged in user to continue with work -  use refresh token 
+10] @JoinColumn in hibernate
+11] @Query annotaion , @Modifying  
+12] @Component vs @Bean
+
+_____________________________________________________________________________________________________________________________________________________
+
+Capgimini L2 :
+
+1] Reverse Array without using inbuild methods , stream 
+   int[]array={1,3,5,7,9,2};
+   
+   int i=0;
+   int j=array.length-1;
+   
+   while(i<j){
+   int temp = array[i];
+   array[i]=arry[j];
+   array[j]=temp;
+   i++;
+   j--;
+   }
+   sout(array)
+   
+2] Find the employee with thired highest salary from empList.
+
+3] How to connect with 2 Databases for single application in springboot. -  create 2 Datasource bean in configclass , in app.yml create config for 2 DB ,use Qualifier annotaion to inject Datasource
+4]  
+
+________________________________________________________________________________________________________________________________________________
+Globant L2 :  
+
+1] find the 3rd highest salary of emp : 
+
+select emp.empSal from employee emp OrderBy emp.empSal DESC LIMIT 1 OFFSET 2 
+__________________________________________________________________________________________
+2] Find if any vovels are there in given string :
+
+        String s1= "sonali";
+        Set<Character> set = new HashSet();
+        set.add('a');
+        set.add('e');
+        set.add('i');
+        set.add('o');
+        set.add('u');
+
+        boolean vovChar = s1.chars().mapToObj(ch->(char)ch).anyMatch(c-> set.contains(c));
+        if(vovChar){
+            System.out.println("string has the vovles");
+        }else{
+            System.out.println("string has no any  vovles");
+        }
+__________________________________________________________________________________________	
+
+Xoriant L1 :
+
+1] find the second non repetative char from string :
+     String str = "i am programmer";
+
+     Character key = str.chars().mapToObj(ch->(char)ch).collect(Collectors.grouppingBy(Function.identity,LinkedHashMap::new ,Collectors.counting()))
+    .entryset().stream().filter(entry-> entry.getValue()==1).map(ent->ent.getKey).skip(1).findFirst().get();
+	
+	
+2] How do you reduce the cost of query? Query optimization?
+
+3] How to handle distributed transactions in MS ? and types of saga and its implementation?
+4] How you will make sure that threads t1 , t2 and t3 will execute in sequential order?
+____________________________________________________________________________________________________________________________________________________________
+
+TechM L1 :
+1] find the second non repetative char from string : 
+      String str ="my name is";
+       Character key = str.chars().mapToObj(ch->(char)ch).collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting())).
+               entrySet().stream().filter(entry->entry.getValue()==1).map(en->en.getKey()).skip(1).findFirst().get();
+              System.out.println("second key : " + key);
+			  
+__________________________________________________________________________________________________________________________________________________
+
+Globant Client Round :
+
+1] use optional class methods to throw an exception if null value is there .
+
+2] tab : stud - stud_id, rank  
+ 
+  Question : select count of  students in each rank  
+
+  select s.stud_id, rank , count(s.stud_id) from stud s GroupBy rank;
+  
+
+	  

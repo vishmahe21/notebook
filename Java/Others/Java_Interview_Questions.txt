@@ -1,0 +1,52 @@
+	1. Java String pool & Integer cache
+	2. Is it possible to make a class "Static"
+
+	3. 
+	4. Continuous Integration, Continuous Delivery, Continuous Deployment
+	5. Difference b/w equals, == and ===
+	6. Difference b/w Fail Fast and Fail Safe iterators
+	7. Heap vs Stack memory
+	8. Coupling in OOP
+	9. RMI
+	10. Serial & Throughput garbage collector
+	11. Compare volatile vs static variables in Java.
+	12. Examples where finally block will not executed in Java
+	13. Synchronization and synchronized keyword
+	14. Singleton pattern and efficient way to implement it
+	15. SoftReference and WeakReference in Java
+	16. Double brace initialization in Java
+	17. Different ways of creating object in Java
+	--> Using new keyword
+	--> Using new instance
+	--> Using clone() method
+	--> Using deserialization
+	--> Using the newInstance() method of the Constructor class
+	18. Object cloning advantages and disadvantages
+	19. Singleton class
+	20. Marker Interface
+Empty interface (no fields or methods). Ex: Serializable, Cloneable and Remote interfaces
+	21. String, StringBuffer and StringBuilder
+	22. Can we change the scope of the overridden method in the subclass
+	23. Can we modify the throws clause of the superclass method while overriding it in the subclass?
+	24. Virtual Function
+	25. Serialization in Java and Serializable interface. How can you avoid serialization in the child class if the base class is implementing the Serializable interface?
+
+
+	Collection Framework
+	1. ArrayList vs Vector.
+	2. Internal working of ArrayList
+	3. LinkedList, Queue, Stack, Priority Queue
+	4. Set, HashSet, LinkedHashSet and its internal working
+	5. Map, TreeMap, HashMap, LinkedHashMap and its internal working
+	
+
+
+https://medium.com/@vivekkadiyanits/java-lead-7-to-10-years-interview-mastery-covered-question-has-asked-in-more-than-9-service-base-d55ffbb0009c
+
+https://medium.com/@sbmaggarwal/java-16-and-17-interview-questions-7a232656db20
+
+https://www.codekatha.com/2023/04/Java-interview-questions-for-10-years-experience.html#point19
+
+(200+ Questions)
+https://www.geeksforgeeks.org/java-interview-questions/
+https://www.geeksforgeeks.org/java-interview-questions/

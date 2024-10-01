@@ -1,0 +1,50 @@
+Core JAVA
+----------------------------------------------
+2. Design Pattern in Java.
+4. Executor Interface, Future and CompletableFuture and its examples (Need more focus)
+Difference or correlation b/w hashKey() and equals() method.
+31. Priority Queue and Blocking Queue and its internal working.
+
+
+
+
+Spring Boot
+----------------------------------------------
+1. Caching in Spring boot. Mam cache and Redis cache.
+2. LRU and LFR in cache.
+3. How to implement Primary key and Composite key in JPA
+4. Generation strategy in primary key.
+5. Entity relationship in JPA
+6. Error codes
+7. JUnit annotations e.g., @Spy, @Mock, @InjectMocks, etc.
+8. Reactive programming
+9. Spring cloud gateway
+10. What is Exception Chaining (How Exception is occurred and its propagation)?
+11. GraphQL
+12. Unit Test cases (Mockito framework Mock InjectMock , Spy, private method mocking)
+13. Service Discovery and Registry
+14. CQRS Design pattern
+15. Blue Green Deployment
+16. Exception faced while running stored procedure in JAVA
+16. Hibernate First and Second Level Cache (Need more focus)
+
+
+
+1. Doman Driven Design in MS
+2. Bounded context in MS
+3. API Gateway (Zuul or spring cloud gateway)
+4. 
+
+
+
+1. Rate limiting and throating in MS
+Polyglot persistence in MS
+20 Server less Arch
+
+
+SQL
+1. How to do Optimization in SQL --> Partition, Indexing, View
+2. PLSQL cursors, triggers
+3. DDL, DML, TCL Types
+
+

@@ -1,0 +1,233 @@
+CORE JAVA
+---------------------------------------------------
+1. SOLID Principles
+2. Design Principles
+3. DRY Priciples
+4. Polymorphism
+5. Abstraction
+6. Immutable and Singleton classes
+6.1 How to break Singleton design pattern.
+6.2. How to implement immutability at various levels like object, method and class level?
+7. Volatile Keyword
+8. Executor Framework and its thread pools.
+8.1 How to execute multiple threads sequentially?
+8.2 join() vs yield()
+8.3. How threads communicate each other?
+8.4. Why wait, notify, notifyAll() methods are present in Object class?
+8.5. Thread Lifecycle
+8.6. Possible ways to create Thread in Java
+8.7. Difference b/w Callable vs Runnable interfaces.
+9. CompletableFuture
+10. Concurrent Execution & Thread safety
+11. Fail fast and Fail safe iterators
+12. HashMap Implementation
+12.1 New change in HashMap implementation in Java 8.
+13. HashMap vs LinkedHashMap vs ConcurrentHashMap
+13.1 Is ConcurrentHashMap thread safe?
+14. HashMap vs HashTree
+15. Array vs ArrayList
+15. Hash Collision
+16. Difference b/w equals() and hashKey() methods.
+17. Stream APIs
+17.1 Intermediate and Terminal operations
+17.2 Why stream api is lazy loading
+17.3 map vs flatMap
+18. Functional interfaces
+18.1 Types of Functional interfaces
+19. Exception Handling
+19.1 Checked and Unchecked Exception
+20. Garbage Collection, types and algorithm
+21. Serialization
+22. Generics in Java and its wildcards
+23. Memory management in String in Java
+24. Priority Queue and Blocking queue in Java
+25. Difference b/w Object Oriented and Functional programming.
+26. Methods of Object class.
+27. Java 8 Features.
+28. Difference b/w final, finally and finalize.
+29. Use of final keyword in multiple context. Class, method and variable.
+30. Comparator vs Comparable
+31. Why is Enum required in Java?
+
+Scenario Based Question
+---------------------------------------------------
+1. What would occur while executing the following code?
+class ThreadEx extends Thread 
+{ 
+    public void run() 
+    { 
+        System.out.print("Hello..."); 
+    } 
+    public static void main(String args[]) 
+    { 
+        ThreadEx T1 = new ThreadEx(); 
+        T1.start(); 
+        T1.stop(); 
+        T1.start(); 
+    } 
+}
+	--> It will throw java.lang.IllegalThreadStateException exception.
+
+2. If try, catch and finally are returning some result and error is throwing, which block will be executed and if there's no error what will be executed?
+
+
+
+
+
+---------------------------------------------------
+SPRING BOOT
+---------------------------------------------------
+1. Spring Boot internal working
+1.1. What are spring.factories? Explain Spring Boot autoconfiguration.
+2. What is SpringBootConfiguration, EnableAutoConfiguration and ComponentScan?
+3. How to create custom starter class?
+4. What is POM file?
+5. How to exclude a package or class dependency?
+7. Spring profiles
+8. Exceptional Handling
+8.1. How to create custom exception class?
+9. Difference b/w Controller and RestController
+9.1. How to return XML or JSON based responses from same REST API?
+9.2. What API headers you have used?
+10. Difference b/w @Qualifier, @Primary and @Required annotations.
+11. Lazy and Eager loading.
+12. Caching in Spring Boot
+13. LFR and LFU in caching
+14. Logging in Spring Boot
+15. Spring JPA
+15.1. Difference b/w JPA and Hibernate
+15.2. Which repository interface is used for JPA?
+15.3. How to implement primary and composite keys in JPA?
+15.4. GenerationType and GenerationStrategy in primary key.
+15.5. Entity Relationship in JPA
+15.6. How JPA assures ACID priciples?
+15.7. FetchType in JPA
+16. @ConfigurationProperties in SpringBoot
+17. Transaction Handling in Spring Boot.
+18. Popular HTTP status codes
+19. Log Tracing mechanism
+20. NFR
+21. JUnit Testing
+21.1. Test Driven Design pattern
+21.2. Difference b/w @InjectMock, @Mock, @Spy.
+22. Spring Cloud Gateway
+23. Hibernate First and Second Level Cache
+24. Actuator
+25. @DependsOn annotation
+26. Conditional annotations
+26.1. @Conditional
+26.2. @ConditionalProperty
+26.3. @ConditionalOnClass 
+26.4. @ConditionalOnMissingBean
+26.5. @ConditionalOnBean
+26.6. @ConditionalOnExpression
+26.7. @ConditionalOnJava
+	https://www.geeksforgeeks.org/spring-conditional-annotations/
+27. Difference b/w RestTemplate and WebClient.
+27.1 Configure SSL in RestTemplate bean.
+28. What is Factory Interface?
+29. 
+
+Scenario based questions
+---------------------------------------------------
+1. Handle latency issue in some API.
+2. Any production support you have worked on?
+3. Any code quality tool uses?
+4. How to reload beans on runtime?
+5. How to execute beans in a specific order?
+6. How do you handle performance in your application?
+7. How to create prototype bean in Spring Boot even if the controller is Singleton?
+8. Suppose there's a loop created in your service to add 5 employees in database which hits EmployeeRepository.save() method 5 times. 
+   How do you verify the count of calling EmployeeRepository.save() method if we Mock the repository object?
+	--> Mockito.verify() [check more on Google]
+
+
+---------------------------------------------------
+MICROSERVICES
+---------------------------------------------------
+1. Microservices architecture
+2. Monolithic vs Microservices.
+3. API Gateway
+4. Service Registry
+5. Inter-service communication.
+6. Fault tolerance
+7. Docker and Kubernetes
+7.1. Time To Live (TTL)
+8. Orchestration
+9. GraphQL
+10. gRPC
+11. Saga Design Pattern
+12. Circuit Breaker Design Pattern
+13. CQRS (Command and Query Responsibility Segregation) Design Pattern
+14. Kubernetes basic commands.
+15. Event Driven approach.
+16. 
+
+Scenario based questions
+---------------------------------------------------
+1. Log tracing  using Grafana, Splunk or CloudWatch
+2. How do you know if service is malfunctioning. How do you fix it?
+3. How do you communicate to other service either through HTTP or HTTPS?
+
+
+---------------------------------------------------
+SPRING SECURITY
+---------------------------------------------------
+1. Which mechanism you have used?
+2. Explain the complete flow?
+3. JWT and its parameters
+4. How do you implement Spring Secuirty? Which dependency is required?
+5. Difference b/w Hashing and Encryption.
+5.1. Do we require same key for encryption and decryption?
+6. What is Ouath2 mechanism?
+
+
+
+
+---------------------------------------------------
+DATABASE
+---------------------------------------------------
+1. Primary key, unique key and composite key.
+2. Indexing in SQL.
+3. 
+
+
+15. If we have an employee table having id, name, age, gender and salary. Write a query to get employee id and name having the second max salary.
+--> SELECT emp.id, emp.name from employee emp order by salary desc offset 1 limit 1;
+
+16. Write a query to fetch the list of employees having duplicate name and email combination.
+--> SELECT emp.name, emp.email from employee emp group by emp.name, emp.email having count(*) > 1;
+
+
+
+---------------------------------------------------
+CLOUD
+---------------------------------------------------
+1. Basic cloud concepts, Availability zones, Region, VPC, Subnet.
+
+
+
+
+---------------------------------------------------
+JAVA 8 PROBLEMS
+---------------------------------------------------
+1. You have Employee class having four fields Id, Name, Gender, Age. You have to find the count of Male and Female employees.
+2. 
+
+
+
+
+
+---------------------------------------------------
+DATA STRUCTURE PROBLEMS
+---------------------------------------------------
+1. We have one root dictionary and other is statement. Wherever statement starts with root, replace the word with root. If multiple root matches, pick the one which is smallest in length.
+	e.g., 	String[] dict = {"catt", "cat", "dog", "fat"};
+			String sentence = "fatttt dogggg hello doggtfsg fathjdb catthg fathd the";
+			Output = "fat dog hello dog fat cat fat the"
+2. Write a program to find the first non-repeating character in String without using Collections and Map.
+3. Given a array of Integers having numbers from 1 to 100 in sorted order and all are unique. But one number is missing. Find that missing number.
+
+
+
+

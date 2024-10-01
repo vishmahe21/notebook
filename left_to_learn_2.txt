@@ -1,0 +1,56 @@
+1. Design Pattern in Java. (In progress)
+7. Serialization (need to revise)
+
+
+
+
+9. Spring profiles
+10. Caching in Spring boot. Num cache and Redis cache.
+11. LRU and LFR in cache.
+14. How to implement Primary key and Composite key in JPA
+15. Generation strategy in primary key.
+14. Log Tracing mechanism
+15. How JPA assures ACID principle?
+16. Log Tracing mechanism
+17. Transaction handling and its attribute
+18. Test Driven Design pattern
+19. JUnit annotations
+20. Reactive Programming
+21. Spring Cloud Gateway
+22. Actuator
+Difference b/w RestTemplate and WebClient.
+What is Factory Interface?
+How to create prototype bean in Spring Boot even if the controller is Singleton?
+5. How to configure SSL in RestTemplate bean?
+3. What is API Gateway in microservices and how do you implement it?
+1. What is actuator in Spring Boot?
+14. Difference b/w RestTemplate and WebClient.
+16. What is API Gateway? How do you implement an API Gateway?
+4. How to create prototype bean in Spring Boot even if the controller is Singleton?
+5. How to configure SSL in RestTemplate bean?
+9. Circuit design pattern and how do you impalement it?
+
+
+
+JWT token and its parts.
+How Spring Security is implemented?
+
+
+
+Basic cloud concepts, Availability zones, Region, VPC, Subnet.
+
+
+
+What is API Gateway? How do you implement an API Gateway?
+What is Circuit Breaker design pattern? What annotations we have to use to implement it?
+
+
+
+
+
+1. Which sorting algorithm you have used?
+
+
+
+
+7. Stored procedure.
