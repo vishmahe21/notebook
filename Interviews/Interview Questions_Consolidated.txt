@@ -1,7 +1,3 @@
-----------------------------------------------------------------------
-Sapient Interview Questions
-----------------------------------------------------------------------
-
 Core Java
 --------------------
 1. SOLID Principles
@@ -17,7 +13,7 @@ Core Java
 	--> Builder design pattern (Step by step construction of objects)
 	--> Singleton design pattern (Create single object from a bean)
 	--> Prototype design pattern
---> Behavioural Design Pattern
+--> Structural Design Pattern
 	--> Adapter Design pattern
 	--> Bridge Design pattern
 	--> Composite Design pattern
@@ -25,7 +21,8 @@ Core Java
 	--> Facade Design pattern
 	--> Flyweight Design pattern
 	--> Proxy Design Pattern
---> Structural Design Pattern
+--> Behavioural Design Pattern
+	https://www.youtube.com/watch?v=DBDnUkTobaE&t=289s&ab_channel=Concept%26%26Coding-byShrayansh
 	--> Chain of Responsibilty pattern
 	--> Command Pattern
 	--> Interpreter Design pattern
@@ -133,12 +130,8 @@ Core Java
 	--> SingleThreadPoolExecutor()
 	--> FixedThreadPool(n)
 	--> CachedThreadPool()
-	--> ScheduledThreadPool(n) // where n is initial number of threads to be created in pool.
-		--> public ScheduledFuture<?> schedule(Runnable command, long delay, TimeUnit unit);
-		--> public ScheduledFuture<?> schedule(Callable<V> task, long delay, TimeUnit unit);
-		--> public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit);
-		--> public ScheduledFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long period, TimeUnit unit);
-	
+	--> ScheduledThreadPool(n)
+	where n is initial number of threads to be created in pool.
 26. How to execute multiple threads sequentially?
 	--> Use join() method.
 	--> Use SingleThreadPoolExecutor
@@ -193,6 +186,8 @@ Data Structures
 
 
 Problems:
+
+STREAM API Problems
 --------------------
 1. There is a list of Integer array. Find duplicates in it using Stream API
 --> Set<Integer> set = new HashSet<>(); 
@@ -202,6 +197,13 @@ Problems:
 e.g., dog fog god gof god fool gof loof --> dog god god fog gof gof fool loof
 --> We can use LinkedHashMap directly
 -->
+
+--------------------
+Data Structure Problems
+--------------------
+
+
+
 
 Spring Boot
 --------------------
@@ -242,7 +244,7 @@ Spring Boot
 	--> It uses spring.factories files present in META-INF folder
 8. How to create custom exception class?
 9. Caching in Spring boot. Num cache and Redis cache.
-10. LRU and LFR in cache.
+10. LRU and LFU in cache.
 	--> LRU : Least Recently Used
 	--> LFU : Least Frequently Used
 11. Logging in spring boot.
@@ -399,9 +401,7 @@ HCLTech Interview Questions
 
 3. What is API Gateway in microservices and how do you implement it?
 4. How to implement security in microservices?
-5. If there are 3 classes having multi-level inheritance. Now if I create object of first class, in which order, constructors will be called?
-	--> By default child constructor calls parent default constructor at its first statement even if child constructor is parameterized.
-6. How can we remove default embedded server in SpringBoot and use some different server like Glassfish or Jetty?
+
 
 
 
@@ -941,17 +941,6 @@ TSYS Interview Questions - Round 2
 
 
 ----------------------------------------------------------------------
-TSYS Interview Questions - Round 3
-----------------------------------------------------------------------
-1. If some API is taking more than 5sec and you have to find what is causing it? How would you do that? How would you monitor this?
-2. Which monitoring tool do you use? Any metrices you have used?
-3. How would you do monitoring in Kafka if some message got missed?
-4. Have you fixed performance issues?
-5. Write a program to find the maximum length of substring having non-repeating characters.
-
-
-
-----------------------------------------------------------------------
 Tech Mahindra Interview Questions
 ----------------------------------------------------------------------
 1. Difference b/w Vector and HashMap.
@@ -1066,30 +1055,6 @@ Global Logic Interview Questions
 
 
 
-----------------------------------------------------------------------
-Global Logic Interview Questions - Client Round 1
-----------------------------------------------------------------------
-1. Write native query in JPA and how its result set will be captured in an object?
-2. You have an array. Now find all possible sub arrays having sum is equal to zero.
-3. Implement Circuit Breaker for an API.
-4. Can we replace @Repository with @Component or @Service?
-5. You have a list of integers. Find the list of even and odd numbers using Java stream.
-6. What is Reactive programming in Java?
-7. Different ways of doing inter-service communication.
-	--> RestTemplate, HttpClient, WebClient
-8. What is WebClient and how to do synchronous call with it?
-9. What type of data return by WebClient? Difference b/w Mono and Flux.
-
-
-
-----------------------------------------------------------------------
-Global Logic Interview Questions - Client Round 1
-----------------------------------------------------------------------
-1. If I want to limit a service to accept only 1000 records at a time. How can we achieve this?
-2. Any production issues you have faced?
-3. In case of heavy data loads, what kind of issues you have faced and how would you fix it?
-
-
 
 ----------------------------------------------------------------------
 Amerprise Interview Questions
@@ -1108,7 +1073,7 @@ Infosys Interview Questions
 
 
 ----------------------------------------------------------------------
-Cubastion Interview Questions - Round 1
+Cubastion Interview Questions
 ----------------------------------------------------------------------
 1. Working of Oauth2 mechanism.
 2. Design principles of microservices.
@@ -1150,21 +1115,6 @@ Cubastion Interview Questions - Round 1
 
 
 ----------------------------------------------------------------------
-Cubastion Interview Questions - Round 2
-----------------------------------------------------------------------
-1. Implement GraphQL
-2. Redis Cache implementation
-3. CI/CD pipeline complete implementation
-4. Entity Relationship implementation
-5. Working of SpringBoot
-6. Stream API Questions
-	a. You have a list of employees. Find the list of employee name group by their salary using Java stream.
-	b. Do the first one without using Collectors.groupingBy().
-	c. Find the list of employee names using java stream.
-7. How would you implement RBAC in your services?
-
-
-----------------------------------------------------------------------
 Moptra Interview Questions - Round 1
 ----------------------------------------------------------------------
 docker compose
@@ -1194,6 +1144,14 @@ e.g., "My name is Vishwas" --> "yM eman si sawhsiV"
 
 
 
+
+----------------------------------------------------------------------
+Deloitte Interview Questions
+----------------------------------------------------------------------
+
+
+
+
 ----------------------------------------------------------------------
 IRIS Interview Questions
 ----------------------------------------------------------------------
@@ -1209,7 +1167,7 @@ IRIS Interview Questions
 
 
 ----------------------------------------------------------------------
-Amantya Interview Questions - Round 1
+Amantya Interview Questions
 ----------------------------------------------------------------------
 1. Iterator vs Spliterator
 2. Iterator vs ListIterator
@@ -1217,17 +1175,28 @@ Amantya Interview Questions - Round 1
 4. Difference b/w Stream and Collection
 5. Java Design patterns.
 6. There is a network having some failure occurred. You have to see the live logs for it. Which design pattern would you use for this.
-	--> Observer pattern as it notifies all the components or classes linked if there is any state change. It will work like when a new log is added, it will inform the service like Splunk to retrieve the same.
+7. Reason when singleton pattern is not good to use?
 8. List the consumer and supplier methods of stream API.
 	--> forEach(Consumer<?>)
 	--> generate(Supplier<?>)
-	--> filter(Predicate<?>)
-	--> Collectors.partitioningBy(Predicate<?>, Collectors<?>)
-	--> map(Function<?>)
 9. What is Actuator in SpringBoot?
-10. Can you create the custom actuator?
+10. Can you create the custome actuator?
 11. How to create custom annotation in Java?
 11. List 4 differences b/w REST and SOAP services.
+	--> REST or Representational State Transfer is an architextural sytle for building the web services. It is mostly used for lightweight and stateless communication. It uses simple HTTP methids like GET, POST, PUT, and DELETE to performoperations on the data resources.
+		Rest uses URI i.e. Uniform Resource Indetifier and assume everything as a resource
+		It do not store any past data, requests and do independent operations
+		It relies on HTTP method to request any type of operation on the resourse.
+		Rest usually works with JSON and XML data formats
+		REST works over HTTP & HTTPS.
+	--> SOAP or Simple Object Access Protocol is a messaing protocol. Is allows to exchange the structure information without any platform. Soap uses the XML data fromat due to the complexity. It is mostly used for complex systems with strict standards ensuring security and reliability.
+		SOAP is a protocol as it has some strict rules for data fomat and communication.
+		It manages the recods and maintain the state between the requests.
+		SOAP relies on SSL and WS-Securiy for secured communication.
+		SOAP works with the XML data format to handle the complex data.
+		SOAP works over HTTP, HTTPS, SMTP, XMPP.
+	--> https://www.geeksforgeeks.org/difference-between-rest-api-and-soap-api/	
+		
 12. Types of HTTP Methods. Difference b/w POST and PUT methods. Give me 4 differences.
 13. Difference b/w PUT and PATCH methods.
 14. If we save anything in SpringBoot, it automatically reload the changes and restart the application. How would SpringBoot does that?
@@ -1253,68 +1222,6 @@ Amantya Interview Questions - Round 1
 21. Difference ways to create singleton design pattern.
 
 
-
-
-----------------------------------------------------------------------
-Amantya Interview Questions - Round 2
-----------------------------------------------------------------------
-1. How do you write native queries in Spring JPA? Also how to map its response to an object?
-2. How do we call b/w services in Microservices architecture?
-	--> RestTemplate, HttpClient and WebClient
-3. Difference b/w RestTemplate, HttpClient and WebClient?
-	--> RestTemplate : blocking synchronous communication.
-	--> HttpClient : Introduced in Java11. Also, provide more closed control to the call. It won't contains any serialization mechanism.
-	--> WebClient : Non-blocking assynchronous. It uses reactive framework and returns Mono and Flux type objects. Can make it synchronous by calling block() method.
-4. How to make WebClient call synchronous and what it is returning?
-	--> block() method is used to make WebClient call synchronous. It returns Mono<?> object for single value. If list, it will return Flux<?>.
-5. You have a list of Integer. Write a program using Stream to filter the even no.
-	--> List<Integer> evenNoList = list.stream().filter(i -> i%2==0).collect(Collector.toList());
-	--> List<Integer> evenNoList = list.stream().filter(this::validateEven).collect(Collector.toList()); //Method Reference
-
-
-
-
-----------------------------------------------------------------------
-mPHATEK Interview Questions
-----------------------------------------------------------------------
-1. Explain the full working of spring security and its integration with keycloak.
-2. What are the use of roles and groups in Keycloak and how are you using in your project?
-3. Have you ever encrypted request payload and response data of an API? If yes, how to do that so user can't see the actual values?
-4. What is SAML and how it works?
-5. What is OpenID and how it works?
-6. How Spring security does the authentication?
-7. If one client is doing authentication using username and pin and other is using username and password? How do you handle it using Spring Security without doing any custom implementation?
-8. How to implement AES encryption?
-9. Difference b/w HTTP and HTTPS and how security implements in HTTPS?
-10. How public private keys used for encrypting data from client to server and vice versa?
-11. Why are you using Keycloak? Can't you directly do security implementation with Spring Security?
-
-
-
-----------------------------------------------------------------------
-TNS Interview Questions
-----------------------------------------------------------------------
-1. What is lamda function? Write a custom lambda function.
-2. List some predefined functional interfaces.
-2. Difference b/w sleep() and yield() method.
-3. What do you mean by InterruptedException?
-4. How would you execute the "Hello after 10mins" immediately after thread.start()
-	Runnable r = () -> System.out.println("Hello World");
-	Thread th = new Thread(r);
-	th.start();
-	Thread.sleep(600000);
-	System.out.println("Hello after 10mins");
-
-5. Difference b/w synchronized and Recurrent locks.
-6. What is Semaphor?
-7. What is ThreadLocal class?
-7. Have you used any Concurrent collection?
-8. What is CopyOnWriteArrayList and ConcurrentHashMap?
-9. How Spring Boot works internally?
-10. Difference b/w @Bean and @Component?
-11. Have you used any Conditional annotations?
-12. How much you are experienced in Kafka? What is consumer group?
-13. Have you worked on Redis Cache?
 
 
 ----------------------------------------------------------------------

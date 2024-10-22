@@ -39,6 +39,7 @@ Core Java
 	--> Visitor Pattern
 3. Runtime or Dynamic polymorphism
 4. Abstraction
+5. Abstract classes vs Interface
 5. Create custom Immutable class
 	--> Class should be final so can't be inherited.
 	--> Variables should be private and final.
@@ -51,6 +52,16 @@ Core Java
 6. Volatile Keyword
 	--> In Java, the volatile keyword is a modifier applied to variables. It ensures that the value of the variable is always read from and written to the main memory, rather than being cached in a thread's local memory (CPU cache).
 	--> Since the purpose of volatile is to control memory access for a specific variable, it only makes sense to apply it to variables. Methods and classes don't have the same kind of memory access characteristics that variables do.
+7. Transient Keyword
+	--> transient is a variables modifier used in serialization. At the time of serialization, if we don’t want to save value of a particular variable in a file, then we use transient keyword. When JVM comes across transient keyword, it ignores original value of the variable and save default value of that variable data type.
+	--> transient keyword plays an important role to meet security constraints. There are various real-life examples where we don’t want to save private data in file. Another use of transient keyword is not to serialize the variable whose value can be calculated/derived using other serialized objects or system such as age of a person, current date, etc.
+	--> transient and static : Since static fields are not part of state of the object, there is no use/impact of using transient keyword with static variables. However there is no compilation error.
+	--> transient and final : final variables are directly serialized by their values, so there is no use/impact of declaring final variable as transient. There is no compile-time error though.
+	-->  // Use of transient has no impact here 
+		transient static int l = 40; 
+		transient final int m = 50; 
+		// Transient variables 
+		transient int k = 30; // It will be save as 0 as its default value while serialization
 7. Executor Interface, Future and CompletableFuture and its examples
 	--> Exception handling in CompletableFuture
 		--> handle(), exceptionally(), whenComplete()
@@ -122,8 +133,12 @@ Core Java
 	--> SingleThreadPoolExecutor()
 	--> FixedThreadPool(n)
 	--> CachedThreadPool()
-	--> ScheduledThreadPool(n)
-	where n is initial number of threads to be created in pool.
+	--> ScheduledThreadPool(n) // where n is initial number of threads to be created in pool.
+		--> public ScheduledFuture<?> schedule(Runnable command, long delay, TimeUnit unit);
+		--> public ScheduledFuture<?> schedule(Callable<V> task, long delay, TimeUnit unit);
+		--> public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit);
+		--> public ScheduledFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long period, TimeUnit unit);
+	
 26. How to execute multiple threads sequentially?
 	--> Use join() method.
 	--> Use SingleThreadPoolExecutor
@@ -166,6 +181,7 @@ Core Java
 			Upper Bounded Wildcard (? extends T) --> Used when you want to restrict the type to a specific class or its subclasses.
 			Lower Bounded Wildcard (? super T) --> Used when you want to restrict the type to a specific class or its supertypes.
 30. Memory Management in String in Java.
+	--> Java uses String pools.
 31. Priority Queue and Blocking Queue and its internal working.
 
 
@@ -230,11 +246,16 @@ Spring Boot
 	--> LRU : Least Recently Used
 	--> LFU : Least Frequently Used
 11. Logging in spring boot.
+	--> Using Slf4j and Log4j
+	--> Logger log = LoggerFactory.getLogger(A.class);
+	
 12. How to create Git CI/CD pipeline?
+	--> Using .gitlab-ci.yml file.
 13. Any recent POC done in SpringBoot?
 	--> Have implemented multitenancy in SpringBoot using Hibernate AbstractMultitenancyConnectionProvider class which implements MultitenantConnectionProvider interface.
 14. How to implement Primary key and Composite key in JPA
 15. Generation strategy in primary key.
+	--> 
 16. Which Repository interface you have used?
 	--> Both JPARepository<EntityName, PrimaryKeyDatatype> & CrudRepository<EntityName, PrimaryKeyDatatype>
 17. @ConfigurationProperties in SpringBoot
@@ -338,7 +359,7 @@ Spring Security
 2. Explain the flow
 3. JWT and its parameters
 4. How do you implement Spring Security. Which dependency is required?
-
+	--> spring-boot-starter-security
 
 
 
@@ -374,11 +395,13 @@ HCLTech Interview Questions
 	Also add Accept header while hitting API as {"Accept": "application/json"}
 2. Program: WAP using Stream API to sum of the digits of an Integer
 	--> int num = 12345;
-	--> int digitSum = String.valueOf(num).chars().stream().mapToInt(Character::getNumericValue).sum();
+	--> int digitSum = String.valueOf(num).chars().map(Character::getNumericValue).sum();
 
 3. What is API Gateway in microservices and how do you implement it?
 4. How to implement security in microservices?
-
+5. If there are 3 classes having multi-level inheritance. Now if I create object of first class, in which order, constructors will be called?
+	--> By default child constructor calls parent default constructor at its first statement even if child constructor is parameterized.
+6. How can we remove default embedded server in SpringBoot and use some different server like Glassfish or Jetty?
 
 
 
@@ -429,7 +452,7 @@ class ThreadEx extends Thread
         T1.start(); 
     } 
 }
---> It will throw java.lang.IllegalThreadStateException exception.
+	--> It will throw java.lang.IllegalThreadStateException exception.
 
 6. What is Executor framework and CompletableFuture future. Write a program for it.
 7. How to execute threads sequentially?
@@ -452,8 +475,41 @@ Wipro Interview Questions
 7. Difference b/w Object Oriented and Functional programming.
 8. What is Thread safety?
 9. Is ConcurrentHashMap thread safe? --> Yes, it is thread safe because it uses synchronization.
+10. ConcurrentHashMap internal working
+	--> As opposed to the HashTables where every read/write operation needs to acquire the lock, there is no locking at the object level in CHM and locking is much granular at a hashmap bucket level.
+	--> CHM never locks the whole Map, instead, it divides the map into segments and locking is done on these segments. CHM is separated into different regions(default-16) and locks are applied to them. When setting data in a particular segment, the lock for that segment is obtained. This means that two updates can still simultaneously execute safely if they each affect separate buckets, thus minimizing lock contention and so maximizing performance.
+	--> No lock is applied on READ operations.
+	--> https://anmolsehgal.medium.com/concurrenthashmap-internal-working-in-java-b2a1a48c7289
 10. What are the new changes done in HashMap implementation in Java8?
+	--> From Java8, LinkedLists are dynamically replaced with "Balanced Binary Search Trees" in collision resolution after the number of collisions in a given bucket location exceed a certain threshold. This change offers a performance boost, since, in the case of a collision, storage and retrieval happen in O(log n).
 11. How do you write Runnable interface before and after Java8 using Functional programming?
+	# Using anonymous inner class
+	--> class MyTask implements Runnable {
+			@Override
+			public void run() {
+				System.out.println("Executing task...");
+			}
+		}
+		
+		// Usage
+		Thread thread = new Thread(new MyTask());
+		thread.start(); 
+		
+		
+	--> Runnable task = new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("This is a task running on a separate thread");
+			}
+		};
+
+		Thread thread = new Thread(task);
+		thread.start();
+		
+	--> After Java8 using Lamda function.
+	--> Runnable task = () -> System.out.println("Executing task with lambda..."); 
+		Thread thread = new Thread(task);
+		thread.start(); 
 12. Difference b/w Callable vs Runnable interfaces.
 13. Methods of Object class.
 14. Difference b/w RestTemplate and WebClient.
@@ -469,6 +525,32 @@ Wipro Interview Questions
 	--> Command Query Responsibilty Segregation.
 21. You have Employee class having four fields Id, Name, Gender, Age. You have to find the count of Male and Female employees.
 
+
+
+
+----------------------------------------------------------------------
+Wipro Interview Questions - Phase 2
+----------------------------------------------------------------------
+1. Rate yourself with Java, SpringBoot and Microservices out of 5.
+2. Java 8 features.
+3. What is Java stream?
+4. Difference b/w HashMap and Hash Table.
+5. What is ConcurrentHashMap?
+6. What is Singleton design pattern?
+7. What do you mean by immutability? How do you implement it at various level?
+6. Explain SpringBoot features and how it works internally?
+7. What is Spring actuator?
+8. What is POM file?
+	--> Project Object Model
+9. Spring profiles.
+10. How do handle exception in SpringBoot?
+10. What are microservices?
+11. API Gateway, Service discovery.
+12. How are two services interacting?
+	--> Using RestTemplate
+13. How do you handle transactions in microservices?
+14. What is circuit breaker? How do you implement it?
+15. Difference b/w final, finally and finalize.
 
 
 
@@ -516,13 +598,22 @@ Moglix Interview Questions Round-1
 ----------------------------------------------------------------------
 1. What is abstraction??
 2. Constructor in Java. If abstract class is having constructor, why couldn't we create object from it?
+	--> Abstract class constructor is being used by its child class for getting the object. The purpose of an abstract class is to act as a blueprint for other classes to inherit from.
 3. Hash Collision and how HashMap handles it?
 4. Difference b/w array and ArrayList.
 5. Is ArrayList thread safe. What error it will throw if I make changes while iterating? How can I do use concurrency feature in it?
+	--> Use CopyOnWriteArrayList
+	--> To prevent unsynchronized access to the list, you can use the Collections.synchronizedList method when creating the list.
 6. How do we handle Exception in Java?
 7. If try, catch and finally are returning some result and error is throwing, which block will be executed and if there's no error what will be executed?
+	--> If error is thrown, catch and finally both will be executed.
+	--> If error is not thrown, only finally will be executed.
 8. Use of final keyword in multiple context. Class, method and variable.
+	--> final at class level stops inheritance.
+	--> final at method level stops overriding.
+	--> final at variable level makes it constant.
 9. If we declare StringBuiilder variable as final, can we use append or delete operations?
+	--> yes, we can do because variable will be pointing to the same object.
 10. How to create our own Immutable and Singleton class?
 11. Write a program to find the first non-repeating character in String without using Collections and Map.
 --> StringBuilder sb = new StringBuilder();
@@ -644,12 +735,13 @@ Wissen Interview Questions
 	if A&B are adjacent or C&D are adjacent, remove the combination. Return the result when no such combination left after multiple iterations.
 	e.g., "AABCCDABDB" --> A[AB]C[CD][AB]DB --> "ACDB" --> A[CD]B --> "AB" --> ""
 7. How spring security works?
-
+8. Write a program using Java 8 to find the 3rd largest number.
+9. Write a program using Java 8 to find the count of each character in String.
 
 
 
 ----------------------------------------------------------------------
-EPAM Interview Questions
+EPAM Interview Questions - Round 1
 ----------------------------------------------------------------------
 1. What is the use of hashCode() and equals() method?
 2. How to implement class level and object level locks in Java?
@@ -673,11 +765,70 @@ EPAM Interview Questions
 11. Scopes in java from lowest visibility to highest.
 12. Default scope of bean in SpringBoot.
 13. Why non-static methods can't be called from static method?
+14. Any JVM level changes you have done?
+	--> --xnx256 (OutOfMemoryError - to increase heap memory size, default is 256MB)
+	--> --xss256 (StackOverflow - to increase stack overflow size, default is 256MB)
+
+
 
 
 
 ----------------------------------------------------------------------
-UST Global Interview Questions
+EPAM Interview Questions - Round 2
+----------------------------------------------------------------------
+1. Can a function interface have methods of object class like hashCode(), equals() and toString()?
+2. List the functional interfaces in Java before Java 8. Also what type of functional interfaces introduced in Java 8?
+3. Java design patterns.
+4. Give some example of Flyweight design pattern in Java.
+	--> String pool
+	--> Integer Cache (-128 to 127)
+	--> Enum
+5. What is Optional class? What its purpose? Can we inherit this class?
+6. What happen if a public method is getting ovverriden by protected method?
+	--> When overriding a method, the access modifier in the child class can be the same or more accessible than the parent class.
+	--> This will give compile time error.
+7. What are SOLID priciples?
+8. What are DRY principles?
+9. If we have common default methods in two interfaces A and B and class implementing both, what would happen?
+	--> Compile time error will be thrown. To handle the same we have to implement the method in class and can use interface implementation by using A.super.grow() or B.super.grow();
+10. If we have common static methods in two interfaces A and B and class implementing both, what would happen?
+	--> It will process without any issue as static methods can be accessed using interface name.
+
+
+11. If a Singleton scope class A have used a class B of prototype scope. If we @Autowire class A in some other class, what will happen?
+12. How to execute some code after the bean creation and before the bean deletion?
+13. By default JPA executed queries are accessible in console. How can you disable this?
+	--> spring.jpa.show-sql=false
+14. Scenarios when finally block won't get executed?
+15. Have you accessed any conditional annotations?
+16. Any NoSQL databases you have used like MongoDB?
+17. By default spring boot uses tomcat server as its embedded server. If we want to use some other server like Jetty as embedded server, how to do that?
+18. If a request is passed through multiple services. At some point of time, request got failed, how would you know that at which service this request got failed?
+19. If a service is down or going through some failure. Another service is continuously hitting it, how would you prevent the hits to the service if it is down?
+	--> By implementing Circuit breaker.
+20. Are you aware of TDD (Test Driven Design)? How do you implement it?
+21. How would you do performance testing and integration testing?
+22. Are you aware of ACID properies of database?
+23. Which cloud services you have used?
+24. If EC2 gets down, how do we make sure its data would be preserved?
+	--> Use EBS (Elastic Block Service)
+25. What's the max file size we can upload on Amazon S3?
+26. if we want to run the entire project on AWS Lamdba. How much max size we can upload on it?
+	-->
+27. How to create CI/CD pipeline on Jenkins?
+
+
+
+
+----------------------------------------------------------------------
+EPAM Interview Questions - Round 3
+----------------------------------------------------------------------
+
+
+
+
+----------------------------------------------------------------------
+UST Global Interview Questions - Round 1
 ----------------------------------------------------------------------
 1. Adapter Design pattern
 2. Bridge design pattern
@@ -690,6 +841,19 @@ UST Global Interview Questions
 9. Difference b/w Collections and streams.
 
 
+
+----------------------------------------------------------------------
+UST Global Interview Questions - Round 2
+----------------------------------------------------------------------
+1. We have to migrate a monolithic service to microservices architecture. How would you do that?
+2. How would you add validating at entity level. If we want employee name should be alphanumeric
+	--> Use @Pattern(regex = "A-Za-z") at the entity field level.
+3. If I want to send my message to a particular partition of Kafka topic. Can I do that and if yes, then how?
+4. What type of messages I can send to Kafka?
+5. What stages are in Kafka?
+	--> Four stages [need to check]
+6. Difference b/w @Controller, @RestController, @Service and @Repository annotations. Also can we interchange them?
+7. Write a program using Java 8 to find the non-repeatitive characters in a String.
 
 
 ----------------------------------------------------------------------
@@ -711,22 +875,483 @@ Cognizant Interview Questions
 
 
 ----------------------------------------------------------------------
+TSYS Interview Questions - Round 1
+----------------------------------------------------------------------
+1. Thread Life Cycle.
+2. How two threads communicate with each other?
+3. What is Serialization?
+4. What is the use of serialVersionUID variable?
+	--> SerialVersionUID is used to ensure that during deserialization the same class (that was used during serialize process) is loaded.
+	--> It is created by JVM for the class to validate while deserialization for confirming the class whether it is same or not. if its different, JVM will throw InvalidClassException.
+	--> https://www.geeksforgeeks.org/serialversionuid-in-java/
+5. What is immutability? How to achieve it both at object and class level?
+6. What do you mean by unreachable catch block?
+7. Can we write try without catch?
+8. Is there any scenario where catch block won't get executed?
+9. What design patterns you have used?
+10. What do you mean by Lambda function?
+11. How to create custom Functional interface? @FunctionalInterface is required for this?
+12. Which version of Java you have worked on? Have you used Java 11 or 17 as well?
+13. What is Optional class?
+13. Write a program to write the numbers in an alternate fashion e.g., first positive then negative till all the possible combinations. Then add` the rest of them as it is.
+	e.g., 	Input - [-1, 2, -3, 4, 5, 6, -7, 8, 9]
+			Output - [9, -7, 8, -3, 6, -1, 5, 2, 0]
+	-->	Arrays.sort(arr);
+		int i= arr.length-1;
+		int j = 0;
+		int[] res = new int[arr.length];
+		int k = 0;
+		while(j < i) {
+			res[k++] = arr[i--];
+			res[k++] = arr[j++];
+		}
+		return res;
+14. Write a program to convert the following String by adding frequency to each letter.
+	e.g., 	Input string - abbbccddaaabbccceeff
+			Output String - a1b3c2d2a3b2c3e2f2
+	-->	String s = "abbbccddaaabbccceeff";
+		StringBuilder sb = new StringBuilder();
+		char[] ch = s.toCharArray();
+		sb.append(ch[0]);
+		int j = 0;
+		for (int i = 1; i < ch.length; i++) {
+			if (ch[i] != ch[i - 1]) {
+				sb.append(String.valueOf(i - j));
+				j = i;
+				sb.append(ch[i]);
+			}
+		}
+		sb.append(ch.length - j);
+		return sb.toString();
+15. Write a program to reverse the process in the last question. Also consider the frequency in double or triple digits.
+	e.g., 	Input string - a12b13c2d2a3b2c3e2f1
+			Output String - aaaaaaaaaaaabbbbbbbbbbbbbccddaaabbccceef
+
+
+
+----------------------------------------------------------------------
+TSYS Interview Questions - Round 2
+----------------------------------------------------------------------
+1. If two services are deploying on Kubernetes and one of the service is dependent on other service for some initial calls, how would you handle this situation?
+2. Write OneToMany and ManyToMany entity relationship implementation in Hibernate. Also what is n+1 problem?
+3. Internal working of SpringBoot.
+4. 
+
+
+
+
+----------------------------------------------------------------------
+TSYS Interview Questions - Round 3
+----------------------------------------------------------------------
+1. If some API is taking more than 5sec and you have to find what is causing it? How would you do that? How would you monitor this?
+2. Which monitoring tool do you use? Any metrices you have used?
+3. How would you do monitoring in Kafka if some message got missed?
+4. Have you fixed performance issues?
+5. Write a program to find the maximum length of substring having non-repeating characters.
+
+
+
+----------------------------------------------------------------------
+Tech Mahindra Interview Questions
+----------------------------------------------------------------------
+1. Difference b/w Vector and HashMap.
+2. ConcurrentHashMap.
+3. Java 8 features.
+4. Write a program to sort the integer array.
+5. Actuator in spring boot.
+6. Bean scopes in SpringBoot.
+	--> singleton: (Default) Scopes a single bean definition to a single object instance for each Spring IoC container.
+	--> prototype: Scopes a single bean definition to any number of object instances.
+	--> request: Scopes a single bean definition to the lifecycle of a single HTTP request. That is, each HTTP request has its own instance of a bean created off the back of a single bean definition. Only valid in the context of a web-aware Spring ApplicationContext.
+	--> session: Scopes a single bean definition to the lifecycle of an HTTP Session. Only valid in the context of a web-aware Spring ApplicationContext.
+	--> application: Scopes a single bean definition to the lifecycle of a ServletContext. Only valid in the context of a web-aware Spring ApplicationContext.
+	--> websocket: Scopes a single bean definition to the lifecycle of a WebSocket. Only valid in the context of a web-aware Spring ApplicationContext.
+6. How do you configure datasource in spring boot?
+7. How do you capture database password? Which type of vault you use?
+8. What is docker? Why do we use it for Microservices?
+9. How docker works?
+10. How much you are aware of cloud services?
+11. Which cloud platform do you use?
+12. Difference b/w DROP, DELETE and TRUNCATE.
+	--> DROP removes an entire table or database, including its structure.
+	--> DELETE removes specific rows from a table while keeping its structure.
+	--> TRUNCATE removes all rows from a table while keeping its structure.
+
+13. What's the ideal percentage of Unit test coverage?
+	--> 80%
+
+
+
+
+----------------------------------------------------------------------
+Sigmoid Interview Questions - Round 1
+----------------------------------------------------------------------
+1. Difference b/w Concurrency and synchronization.
+2. Java 8 features.
+3. Difference b/w Vector and ArrayList.
+4. DB Query:
+	There is a customers and orders table. You have to write a query which fetch the list of customers with their total order value for the customers who have placed minimum of three orders in last year and have total order value greater than 5000$.
+	--> SELECT
+		  c.customer_id,
+		  c.customer_name,
+		  SUM(o.order_value) AS total_order_value
+		FROM
+		  customers c
+		INNER JOIN
+		  orders o ON c.customer_id = o.customer_id
+		WHERE
+		  YEAR(o.order_date) >= 
+		GROUP BY
+		  c.customer_id
+		HAVING
+		  COUNT(o.order_id) >= 3 AND
+		  SUM(o.order_value) > 5000;
+
+5. There is an array representing length of ropes. We have to join all the ropes such that their cost of joining would be minimum. Cost of joining two ropes is the sum of their length. Write a Java program for the same.
+	--> PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        for (int rope : ropes) {
+            minHeap.add(rope);
+        }
+
+        int totalCost = 0;
+        while (minHeap.size() > 1) {
+            int rope1 = minHeap.poll();
+            int rope2 = minHeap.poll();
+            totalCost += rope1 + rope2;
+            minHeap.add(rope1 + rope2);
+        }
+
+        return totalCost;
+
+
+
+
+----------------------------------------------------------------------
+Sigmoid Interview Questions - Round 2
+----------------------------------------------------------------------
+1. Difference b/w SQL and NoSQL databases.
+2. If a e-commerce company having two types of records - Users and Products. Where type of database you would prefer for them. Either same type of different.
+	--> Users can be save in a structure way, so we can use RDBMS database.
+	--> Products can be of any type like grocery, electronic, clothing, etc. So its an unstructured type data which should be stored in unstructured database like NoSQL.
+3. What is Kafka? How it is different from other messaging queues?
+4. What is a messaging queue? Where do we use it? What type of problem it is solving?
+5. Write a query to find 3 minimum salaries of Employee.
+	--> select salary form employee order by salary limit 3;
+6. Write a program to solve the following problem.
+	There is an array. You have to replace each of its value by its immediate greater number.
+	How do we handle if this could be a circular array or list.
+
+7. Internal working of Spring Boot.
+8. How do request flows in Spring Boot controller. Can we make changes in the request before executing the controller? Also same for Post request 
+	--> Using Interceptor
+		--> preHandle():
+		--> afterCompletion():
+		--> postHandle():
+	--> In Spring Boot, firstly request comes to dispatcher, then it will redirect the request based on its path to specific controller and then specific API.
+
+
+----------------------------------------------------------------------
+Global Logic Interview Questions
+----------------------------------------------------------------------
+1. Working difference b/w PUT and PATCH
+2. Can you write complete CRUD operations?
+3. How @Transactional works in SpringBoot?
+4. What are starter dependencies in Spring Boot?
+5. How do we take our data from on-premises to S3? Explain the approach you will use for this.
+6. Can we create thread pools on our own. If yes, what's the need of Executor framework?
+	--> Executor Framework provides a predefined and optimized way of handling thread pools. We can also create our thread pools but we have to manage it on our own which requires extra effort. Also Executor framework uses Callable Interface which can return some result but thread is using Runnable interface which won't return anything.
+7. Where do you use HashSet? Give some real life scenario.
+8. When we get 500 error?
+9. What is sharding?
+
+
+
+----------------------------------------------------------------------
+Global Logic Interview Questions - Client Round 1
+----------------------------------------------------------------------
+1. Write native query in JPA and how its result set will be captured in an object?
+2. You have an array. Now find all possible sub arrays having sum is equal to zero.
+3. Implement Circuit Breaker for an API.
+4. Can we replace @Repository with @Component or @Service?
+5. You have a list of integers. Find the list of even and odd numbers using Java stream.
+6. What is Reactive programming in Java?
+7. Different ways of doing inter-service communication.
+	--> RestTemplate, HttpClient, WebClient
+8. What is WebClient and how to do synchronous call with it?
+9. What type of data return by WebClient? Difference b/w Mono and Flux.
+
+
+
+----------------------------------------------------------------------
+Global Logic Interview Questions - Client Round 1
+----------------------------------------------------------------------
+1. If I want to limit a service to accept only 1000 records at a time. How can we achieve this?
+2. Any production issues you have faced?
+3. In case of heavy data loads, what kind of issues you have faced and how would you fix it?
+
+
+
+----------------------------------------------------------------------
+Amerprise Interview Questions
+----------------------------------------------------------------------
+1. Difference b/w Inheritance and Abstraction.
+
+
+
+
+----------------------------------------------------------------------
+Infosys Interview Questions
+----------------------------------------------------------------------
+1. How do we handle the transactions in Spring JPA?
+	--> @Transactional
+
+
+
+----------------------------------------------------------------------
+Cubastion Interview Questions - Round 1
+----------------------------------------------------------------------
+1. Working of Oauth2 mechanism.
+2. Design principles of microservices.
+3. Difference b/w SQL and NoSQL databases. Which would you prefer and in what scenarios?
+	--> I've to share some real life scenarios.
+4. What's the latest challenge you've faced in your project and how did you solve that?
+5. Difference b/w Service Discovery and API Gateway?
+6. You have the following classes.
+	class A{
+		public void print(){
+			System.out.println(“print function of A”)
+		}
+		public void display(){
+			System.out.println(“display function of A”)
+		}
+	}
+	class B extends A{
+		public void print(){
+			System.out.println(“print function of B”)
+		}
+		public void empty(){
+			System.out.println(“empty function of B”)
+		}
+	}
+	
+	Can I do the following?
+	a) A a = new B();
+	b) B b = new A(); // Compilation 
+	c) B b = (B) new A();
+
+7. There is a Car class having fields as id, engineNo & companyName, and you have a car list and list of companies as below.
+	List<Car> carList;
+	List<String> companies = List.of("Tesla", "BMW", "Ford");
+	Write a program to sort the cars in the order of companies name.
+	--> carList.stream().sorted(Comparator.comparing(car -> companies.indexOf(car.getCompanyName()))).collect(Collectors.toList());
+
+8. If we have to make 10000 request to some microservice. How would you handle it?
+
+
+
+----------------------------------------------------------------------
+Cubastion Interview Questions - Round 2
+----------------------------------------------------------------------
+1. Implement GraphQL
+2. Redis Cache implementation
+3. CI/CD pipeline complete implementation
+4. Entity Relationship implementation
+5. Working of SpringBoot
+6. Stream API Questions
+	a. You have a list of employees. Find the list of employee name group by their salary using Java stream.
+	b. Do the first one without using Collectors.groupingBy().
+	c. Find the list of employee names using java stream.
+7. How would you implement RBAC in your services?
+
+
+----------------------------------------------------------------------
+Moptra Interview Questions - Round 1
+----------------------------------------------------------------------
+docker compose
+Spring Batch
+Hibernate n+1 problem.
+docker compose
+
+
+
+----------------------------------------------------------------------
+Moptra Interview Questions - Round 2
+----------------------------------------------------------------------
+1. If an API is being called from one service to other but it is getting failed after a certain timeout. I want to have a retry mechanism to hit API three times before returning the response. How can I do this in Spring Boot?
+	--> Use @Retryable annotation [Check more on this]
+2. Difference b/w docker compose and Dockerfile.
+3. How Kubernetes works?
+4. How do you handle performance issues?
+5. If there are 10000 records. Which data structure would you use for storing it so that it can be fetched easily?
+	--> I would prefer HashMap as it gives O(1) time in insertion and retrieval.
+6. Can we have two services deployed in a single pod?
+7. Spring Batch
+8. You have a Student table having fields as id, name, math_score, hindi_score, science_score, exam_date. Write a query to fetch the employees having average score is greater than 70 and exam date is greater than 1-Jan-2020.
+	--> select * from student where (math_score + science_score + hindi_score)/3 > 70 and exam_date > '01-01-2020';
+9. Write a program using Java stream to reversing each word of a sentence.
+e.g., "My name is Vishwas" --> "yM eman si sawhsiV"
+	--> s.chars().mapToObj(c -> (char)c).map(st -> new StringBuilder(st).reverse().toString()).collect(Collectors.joining(" "));
+
+
+
+----------------------------------------------------------------------
+IRIS Interview Questions
+----------------------------------------------------------------------
+1. Race conditions in multithreading.
+2. n+1 problem in Hibernate
+3. save() vs saveAndFlush() methods of JPA.
+4. Stream vs Parallel Stream
+5. You have two arrays. Write a code using Java stream to merge them, sort it and generate the unique elements.
+6. You have two methods. Method1 is generating odd numbers, method2 is generating even numbers. You have to generate the number sequence as 1,2,3,4,5,6 using multithreading without using synchronization.
+7. What is hashing?
+8. Which algorithm being used by Stream.sorted() for sorting?
+
+
+
+----------------------------------------------------------------------
+Amantya Interview Questions - Round 1
+----------------------------------------------------------------------
+1. Iterator vs Spliterator
+2. Iterator vs ListIterator
+3. Fail Fast vs Fail Safe Iterators
+4. Difference b/w Stream and Collection
+5. Java Design patterns.
+6. There is a network having some failure occurred. You have to see the live logs for it. Which design pattern would you use for this.
+	--> Observer pattern as it notifies all the components or classes linked if there is any state change. It will work like when a new log is added, it will inform the service like Splunk to retrieve the same.
+8. List the consumer and supplier methods of stream API.
+	--> forEach(Consumer<?>)
+	--> generate(Supplier<?>)
+	--> filter(Predicate<?>)
+	--> Collectors.partitioningBy(Predicate<?>, Collectors<?>)
+	--> map(Function<?>)
+9. What is Actuator in SpringBoot?
+10. Can you create the custom actuator?
+11. How to create custom annotation in Java?
+11. List 4 differences b/w REST and SOAP services.
+12. Types of HTTP Methods. Difference b/w POST and PUT methods. Give me 4 differences.
+13. Difference b/w PUT and PATCH methods.
+14. If we save anything in SpringBoot, it automatically reload the changes and restart the application. How would SpringBoot does that?
+-->	Key points about how it works:
+	--> Dependency inclusion:
+			To enable this feature, add the spring-boot-devtools dependency to your project. 
+	--> File monitoring:
+			When you save a code change, the DevTools automatically detects the modification. 
+	--> Optimized restart:
+			Instead of a full application restart, DevTools uses a custom classloader to reload only the changed classes, significantly reducing restart time. 
+	--> Configuration options:
+			You can further customize the behavior with properties like spring.devtools.restart.enabled to control whether automatic restarts are enabled and spring.devtools.restart.exclude to specify files that should not trigger a restart. 
+15. List 5 differences b/w Spring and SpringBoot.
+16. Is there any other way to configure database in Spring Boot without using configuration in application.properies?
+17. Implement Circuit Breaker in SpringBoot. Do step by step process.
+18. Design patterns of Microservices.
+
+19. Write a program using Java 8 streams for fetching the unique characters in String.
+
+20. If a request flows through multiple services and fails at any of it. How would you trace the request without using log monitoring?
+	--> traceId and spanId
+
+21. Difference ways to create singleton design pattern.
+
+
+
+
+----------------------------------------------------------------------
+Amantya Interview Questions - Round 2
+----------------------------------------------------------------------
+1. How do you write native queries in Spring JPA? Also how to map its response to an object?
+2. How do we call b/w services in Microservices architecture?
+	--> RestTemplate, HttpClient and WebClient
+3. Difference b/w RestTemplate, HttpClient and WebClient?
+	--> RestTemplate : blocking synchronous communication.
+	--> HttpClient : Introduced in Java11. Also, provide more closed control to the call. It won't contains any serialization mechanism.
+	--> WebClient : Non-blocking assynchronous. It uses reactive framework and returns Mono and Flux type objects. Can make it synchronous by calling block() method.
+4. How to make WebClient call synchronous and what it is returning?
+	--> block() method is used to make WebClient call synchronous. It returns Mono<?> object for single value. If list, it will return Flux<?>.
+5. You have a list of Integer. Write a program using Stream to filter the even no.
+	--> List<Integer> evenNoList = list.stream().filter(i -> i%2==0).collect(Collector.toList());
+	--> List<Integer> evenNoList = list.stream().filter(this::validateEven).collect(Collector.toList()); //Method Reference
+
+
+
+
+----------------------------------------------------------------------
+mPHATEK Interview Questions
+----------------------------------------------------------------------
+1. Explain the full working of spring security and its integration with keycloak.
+2. What are the use of roles and groups in Keycloak and how are you using in your project?
+3. Have you ever encrypted request payload and response data of an API? If yes, how to do that so user can't see the actual values?
+4. What is SAML and how it works?
+5. What is OpenID and how it works?
+6. How Spring security does the authentication?
+7. If one client is doing authentication using username and pin and other is using username and password? How do you handle it using Spring Security without doing any custom implementation?
+8. How to implement AES encryption?
+9. Difference b/w HTTP and HTTPS and how security implements in HTTPS?
+10. How public private keys used for encrypting data from client to server and vice versa?
+11. Why are you using Keycloak? Can't you directly do security implementation with Spring Security?
+
+
+
+----------------------------------------------------------------------
+TNS Interview Questions
+----------------------------------------------------------------------
+1. What is lamda function? Write a custom lambda function.
+2. List some predefined functional interfaces.
+2. Difference b/w sleep() and yield() method.
+3. What do you mean by InterruptedException?
+4. How would you execute the "Hello after 10mins" immediately after thread.start()
+	Runnable r = () -> System.out.println("Hello World");
+	Thread th = new Thread(r);
+	th.start();
+	Thread.sleep(600000);
+	System.out.println("Hello after 10mins");
+
+5. Difference b/w synchronized and Recurrent locks.
+6. What is Semaphor?
+7. What is ThreadLocal class?
+7. Have you used any Concurrent collection?
+8. What is CopyOnWriteArrayList and ConcurrentHashMap?
+9. How Spring Boot works internally?
+10. Difference b/w @Bean and @Component?
+11. Have you used any Conditional annotations?
+12. How much you are experienced in Kafka? What is consumer group?
+13. Have you worked on Redis Cache?
+
+
+----------------------------------------------------------------------
 Others
 ----------------------------------------------------------------------
 1. Actuator in SpringBoot
 2. Interceptor in SpringBoot
+	--> Methods:
+		--> preHandle():
+		--> afterCompletion():
+		--> postHandle():
+		@Configuration
+		public class RequestInterceptorConfig implements WebMvcConfigurer { 
+			 
+			  // Register an interceptor with the registry, Interceptor name : RequestInterceptor 
+			  @Override
+			public void addInterceptors(InterceptorRegistry registry) { 
+				registry.addInterceptor(new RequestInterceptor()); 
+			} 
+			//* We can register any number of interceptors with our spring application context 
+		}
 3. Microservices Architecture Playlist
 	--> https://www.youtube.com/playlist?list=PLSVW22jAG8pBnhAdq9S8BpLnZ0_jVBj0c
 4. How to create your own spring boot starter?
-5. Pub-Sub in Messaing queue
+5. Pub-Sub vs Messaing queue.
+	--> Message queues consist of a publishing service and multiple consumer services that communicate via a queue. This communication is typically one way where the publisher will issue commands to the consumers. The publishing service will typically put a message on a queue or exchange and a single consumer service will consume this message and perform an action based on this.
+	--> Conversely, to message queues, in a pub-sub architecture we want all our consuming (subscribing) applications to get at least 1 copy of the message that our publisher posts to an exchange.
+	--> https://www.baeldung.com/pub-sub-vs-message-queues
 6. Difference b/w Arrays.asList() and List.of()
--->	Arrays.asList()														|	List.of()
-	---------------------------------------								|   -----------------------------------------	
-	1. Can contains null values											|	1. Can't contain Null values
-	2. Elements can be modified but can't be added or removed.			|	2. Immutable(no modifications allowed)
-	3. Fixed Size														|	3. Fixed size
-	4. Backed by an array. Any changes made to the array or list		|	4. Not backed by any array.
-	   affect the both
+	-->	Arrays.asList()														|	List.of()
+		---------------------------------------								|   -----------------------------------------	
+		1. Introduced in Java 8.											|	1. Introduced in Java 9.
+		1. Can contains null values											|	1. Can't contain Null values
+		2. Elements can be modified but can't be added or removed.			|	2. Immutable(no modifications allowed)
+		3. Fixed Size														|	3. Fixed size
+		4. Backed by an array. Any changes made to the array or list		|	4. Not backed by any array.
+		   affect the both
 
 7. Circular Dependency In SpringBoot
 	--> Exception occurred BeanCurrentlyInCreationException
@@ -734,7 +1359,18 @@ Others
 	--> Use Setter injection because circular dependency is occurring while using Constructor injection.
 	--> Use @PostConstruct to initialize the dependent bean post the bean initialization.
 	https://www.baeldung.com/circular-dependencies-in-spring
-
+	--> We can also use the property to resolve the circular dependency.
+		spring.main.allow-circular-references=true
+	
+8. Comparator vs Comparable
+	Comparable --> new T1().compareTo(new T2());
+	Comparator --> Comparator.compare(Object o1, Object o2);
+9. Why is Enum required in Java?
+	--> Type Safety: Enums provide type safety, ensuring that only valid values are assigned to a variable. This prevents accidental errors caused by using incorrect string or integer values.
+	-->	Readability: Enums make code more readable and self-explanatory. Instead of using magic numbers or strings, you use meaningful names that represent the values.
+	-->	Maintainability: Enums make code easier to maintain. If you need to add or modify a constant, you only need to change it in one place (the enum declaration) instead of searching and updating multiple occurrences throughout the code.
+	--> Enhanced Functionality: Enums are more than just constants. They can have methods, constructors, and even fields. This allows you to associate additional behavior or data with each constant.
+	--> Iteration: You can easily iterate over the values of an enum using a loop or the values() method.
 
 
 
