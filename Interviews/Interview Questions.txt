@@ -16,7 +16,7 @@ Core Java
 	--> AbstractFactory Design Pattern (means Factory of Factories)
 	--> Builder design pattern (Step by step construction of objects)
 	--> Singleton design pattern (Create single object from a bean)
-	--> Prototype design pattern
+	--> Prototype design pattern (Create new objects by cloning. Mainly used when object creation is heavy process, so we create objects with the existing object itself by copying the existing ones.)
 --> Behavioural Design Pattern
 	--> Adapter Design pattern
 	--> Bridge Design pattern
@@ -1310,6 +1310,7 @@ TNS Interview Questions
 7. What is ThreadLocal class?
 7. Have you used any Concurrent collection?
 8. What is CopyOnWriteArrayList and ConcurrentHashMap?
+9. What is BlockingQueue?
 9. How Spring Boot works internally?
 10. Difference b/w @Bean and @Component?
 11. Have you used any Conditional annotations?
