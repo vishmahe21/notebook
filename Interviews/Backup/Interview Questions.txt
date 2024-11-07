@@ -16,7 +16,7 @@ Core Java
 	--> AbstractFactory Design Pattern (means Factory of Factories)
 	--> Builder design pattern (Step by step construction of objects)
 	--> Singleton design pattern (Create single object from a bean)
-	--> Prototype design pattern
+	--> Prototype design pattern (Create new objects by cloning. Mainly used when object creation is heavy process, so we create objects with the existing object itself by copying the existing ones.)
 --> Behavioural Design Pattern
 	--> Adapter Design pattern
 	--> Bridge Design pattern
@@ -1083,7 +1083,7 @@ Global Logic Interview Questions - Client Round 1
 
 
 ----------------------------------------------------------------------
-Global Logic Interview Questions - Client Round 1
+Global Logic Interview Questions - Client Round 2
 ----------------------------------------------------------------------
 1. If I want to limit a service to accept only 1000 records at a time. How can we achieve this?
 2. Any production issues you have faced?
@@ -1162,6 +1162,14 @@ Cubastion Interview Questions - Round 2
 	b. Do the first one without using Collectors.groupingBy().
 	c. Find the list of employee names using java stream.
 7. How would you implement RBAC in your services?
+
+
+
+----------------------------------------------------------------------
+Cubastion Interview Questions - Round 3
+----------------------------------------------------------------------
+
+
 
 
 ----------------------------------------------------------------------
@@ -1273,6 +1281,15 @@ Amantya Interview Questions - Round 2
 
 
 
+----------------------------------------------------------------------
+Amantya Interview Questions - Client Round
+----------------------------------------------------------------------
+1. Explain the current project you're working on?
+2. Any complex algorithm you've written and how would you implemented it?
+3. How does you implement authentication? Explain in detail.
+4. Which database you've used? How much extent you've used the database?
+
+
 
 ----------------------------------------------------------------------
 mPHATEK Interview Questions
@@ -1305,16 +1322,100 @@ TNS Interview Questions
 	Thread.sleep(600000);
 	System.out.println("Hello after 10mins");
 
+5. If a parent method is throwing some exception and child won't throw any exception, what would happen?
 5. Difference b/w synchronized and Recurrent locks.
 6. What is Semaphor?
 7. What is ThreadLocal class?
 7. Have you used any Concurrent collection?
 8. What is CopyOnWriteArrayList and ConcurrentHashMap?
+	--> CopyOnWriteArrayList --> It creates a copy while iteration and if we do any write operation, it will be done on a copy by read will be done on original object. That's why any changes won't reflect in Iteration but post the iteration completes we can see the changes.
+9. What is BlockingQueue?
 9. How Spring Boot works internally?
 10. Difference b/w @Bean and @Component?
 11. Have you used any Conditional annotations?
 12. How much you are experienced in Kafka? What is consumer group?
 13. Have you worked on Redis Cache?
+
+14. Disadvantages of Synchronized keyword.
+	--> A thread acquires an object level lock when enters an instance synchronized method. A thread acquires a class level lock when enters a static synchronized method.
+	--> The synchronized keyword is re-entrant. A thread that holds a lock on one synchronized method does not need to acquire a lock for a synchronized method called from the first method.
+	--> It doesn’t allow concurrent read. This limits scalability. You can use ReentrantReadWriteLock for this use case. It is from package java.util.concurrent.locks. It provides a ready implementation of the ReadWriteLock in Java.
+	--> The synchronized keyword can control access to a shared object just within the same JVM.
+	--> A synchronized method in Java is very slow. They degrade performance. So, it better to use blocks for critical sections of code.
+	--> Your synchronized code could cause a java deadlock or starvation while accessing by multiple threads if synchronization is not implemented correctly.
+	--> It’s not good to use a non-final field or String on the synchronized block. A string is an immutable object. A literal string and interned string gets stored in the String pool. Another thread can be locked on the same object despite being completely unrelated. It can cause unexpected behavior.
+
+
+----------------------------------------------------------------------
+IBM Interview Questions - Round 1
+----------------------------------------------------------------------
+1. Write a POJO class which represents t A thread that holds a lock on one synchronized method does not need to acquire a lock for a synchronized method called from the first method.
+he following JSON. Also write the unit test case for the same.
+	{
+		"fName": "ABC",
+		"lName": "DEF",
+		"dateOfBirth": "2021-01-01",
+		"Address": [{
+				"type": "HOME",
+				"line1": "2201 E Drive",
+				"city": "Phoenix",
+				"zip": "394892",
+				"country": "USA"
+			},
+			{
+				"type": "OFFICE",
+				"line1": "2201 E Drive",
+				"city": "Phoenix",
+				"zip": "88023",
+				"country": "USA"
+			}
+		]
+	}
+
+
+
+----------------------------------------------------------------------
+IBM Interview Questions - Round 2
+----------------------------------------------------------------------
+1. Explain the project you've worked on. Also the tech stack you've used in it.
+2. What type of database activities you've worked upon?
+3. How Spring Security works internally?
+4. Have you used Helm charts in Kubernetes?
+
+
+----------------------------------------------------------------------
+IBM Interview Questions - Round 3
+----------------------------------------------------------------------
+1. We want to fetch the employee data based on its id. How would you write this in Core Java? Explain all the possible scenarios.
+2. How do we create custom exception? Difference b/w Exception and RuntimeException.
+3. Share some scenarios where Exception is preferred for creating Custom Exception. Similar for RuntimeException.
+2. If we want to do this using SpringBoot. How would you do this?
+3. Which unit test framework you've used?
+4. Do you have any scenario when mocking the method using when() and then() won't work?
+5. Difference b/w Mock and Spy.
+6. How extent you've used the database?
+7. Have you worked on PL/SQL?
+8. Any feature of Java 8 you haven't used.
+	--> I haven't used Spliterator much.
+
+
+----------------------------------------------------------------------
+Capgemini Interview Questions
+----------------------------------------------------------------------
+1. What are stereotype annotation?
+	--> @Controller, @RestController, @Service and @Repository
+2. Bean life cycle.
+3. What are PostConstruct and PreDestruct annotations?
+4. 
+5. Have you worked on autoscaling of pods?
+
+
+
+----------------------------------------------------------------------
+Tribolatech Interview Questions
+----------------------------------------------------------------------
+1. 
+
 
 
 ----------------------------------------------------------------------
