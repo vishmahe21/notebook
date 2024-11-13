@@ -1301,7 +1301,7 @@ Amantya Interview Questions - Client Round
 
 
 ----------------------------------------------------------------------
-mPHATEK Interview Questions
+mPHATEK Interview Questions - Round 1
 ----------------------------------------------------------------------
 1. Explain the full working of spring security and its integration with keycloak.
 2. What are the use of roles and groups in Keycloak and how are you using in your project?
@@ -1314,6 +1314,18 @@ mPHATEK Interview Questions
 9. Difference b/w HTTP and HTTPS and how security implements in HTTPS?
 10. How public private keys used for encrypting data from client to server and vice versa?
 11. Why are you using Keycloak? Can't you directly do security implementation with Spring Security?
+
+
+----------------------------------------------------------------------
+mPHATEK Interview Questions - Round 2
+----------------------------------------------------------------------
+1. Difference b/w Ouath and OIDC. How these two provides security?
+2. What are the possible grant_type while generate access token? How do we use these grant types?
+3. How do we configure SSL in HTTPS? Also what changes we have to do to communicate some service with HTTPS means YAML level changes?
+4. What is SSL?
+5. Have you used any encryption mechanism? How do you implemented that?
+6. How Spring Security works internally?
+
 
 
 
@@ -1360,7 +1372,22 @@ TNS Interview Questions - Round 1
 TNS Interview Questions - Round 2
 ----------------------------------------------------------------------
 1. How JVM stores objects in its memory? Explain JVM memory model.
-2. 
+2. Given a list of integers, find out all the even numbers that exist in the list.
+3. Following is the code. You have to tell how it will be stored in JVM about all of its components.
+	void f1() {
+		int a=10;
+	}
+	void f2() {
+		int a=20;
+	}
+4. How will be the following stored in JVM?
+	Integer a=10;
+	Double d = 23.7;
+	String s = "Naman";
+4. There's a function f1 with declares a variable A = 10. Two threads t1 and t2 are making changes in the variable t1 increases A by 5, t2 increases A by 10. What will be the final value of A?
+5. How do you make sure these threads should run sequentially.
+6. There's a list of employees. Find the average age of male and female employees using Java streams.
+7. Sort the list of employees using name, gender and department. Means if name is same, sort them by gender. if both are same, sort it by department. Do this using both Java 8 streams and without streams.
 
 
 
@@ -1376,7 +1403,7 @@ TNS Interview Questions - Round 3
 	2nd is labelled with Orange,
 	3rd is labelled with Apple & Orange.
 	You have only one chance to check any of the box and label all of them correctly.
-
+6. Design HLD & LLD of your project?
 
 
 ----------------------------------------------------------------------
@@ -1471,6 +1498,12 @@ Tribolatech Interview Questions - Round 2
 	--> Using indexing.
 	--> We can also use pagination.
 
+
+
+----------------------------------------------------------------------
+Pure Software Interview Questions
+----------------------------------------------------------------------
+1. Can partition in Kafka can behave as FIFO?
 
 
 
