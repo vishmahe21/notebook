@@ -1500,6 +1500,17 @@ Tribolatech Interview Questions - Round 2
 
 
 
+
+----------------------------------------------------------------------
+Happiest Mind Interview Questions
+----------------------------------------------------------------------
+1. How producer and subscriber works in Kafka?
+2. How producer acknowledge the message? What are the different producer acknowledgement strategies in Kafka?
+3. How consumer acknowledge the message in Kafka?
+4. If some network interruption while sending message to Kafka, how can we handle this?
+
+
+
 ----------------------------------------------------------------------
 Pure Software Interview Questions
 ----------------------------------------------------------------------
